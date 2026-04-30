@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEADER BBS GUIDE – Apprends le Trading Gratuitement</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #FFD700;
+    --gold2: #FFA500;
+    --dark: #0a0e1a;
+    --dark2: #111827;
+    --dark3: #1c2539;
+    --card: #162033;
+    --green: #00e676;
+    --red: #ff4444;
+    --blue: #38bdf8;
+    --text: #e2e8f0;
+    --muted: #8899aa;
+    --border: rgba(255,215,0,0.15);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Nunito',sans-serif;background:var(--dark);color:var(--text);min-height:100vh;}
+
+  /* ===== AUTH OVERLAY ===== */
+  #auth-overlay {
+    position:fixed;inset:0;z-index:10000;
+    background: linear-gradient(135deg, #060a14 0%, #0d1526 50%, #060a14 100%);
+    display:flex;align-items:center;justify-content:center;
+    padding:16px;
+    overflow-y:auto;
+  }
+  #auth-overlay.hidden { display:none; }
+
+  .auth-wrapper {
+    width:100%;max-width:440px;
+  }
+  .auth-logo {
+    text-align:center;
+    font-family:'Bebas Neue',sans-serif;
+    font-size:2.4rem;
+    color:var(--gold);
+    letter-spacing:3px;
+    margin-bottom:6px;
+  }
+  .auth-logo span{color:var(--gold2);}
+  .auth-tagline {
+    text-align:center;
+    color:var(--muted);
+    font-size:.88rem;
+    margin-bottom:28px;
+  }
+
+  /* Auth tabs */
+  .auth-tabs {
+    display:flex;
+    background:var(--dark3);
+    border-radius:12px;
+    padding:4px;
+    margin-bottom:24px;
+    border:1px solid var(--border);
+  }
+  .auth-tab {
+    flex:1;padding:11px;border-radius:9px;border:none;
+    background:none;color:var(--muted);font-family:'Nunito',sans-serif;
+    font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;
+  }
+  .auth-tab.active {
+    background:linear-gradient(90deg,var(--gold),var(--gold2));
+    color:var(--dark);
+  }
+
+  /* Auth forms */
+  .auth-form { display:none; }
+  .auth-form.active { display:block; }
+
+  .auth-box {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:28px 28px 24px;
+  }
+  .auth-box h2 {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.7rem;color:var(--gold);
+    margin-bottom:4px;letter-spacing:1px;
+  }
+  .auth-box .sub {
+    font-size:.82rem;color:var(--muted);margin-bottom:20px;
+  }
+
+  .auth-field { margin-bottom:14px; }
+  .auth-field label {
+    display:block;font-size:.78rem;font-weight:700;
+    color:var(--muted);margin-bottom:5px;letter-spacing:.5px;
+  }
+  .auth-field input {
+    width:100%;background:var(--dark3);
+    border:1.5px solid var(--border);
+    border-radius:10px;padding:12px 14px;
+    color:var(--text);font-family:'Nunito',sans-serif;
+    font-size:.92rem;outline:none;transition:.2s;
+  }
+  .auth-field input:focus { border-color:var(--gold); }
+  .auth-field input.error { border-color:var(--red); }
+
+  .auth-error {
+    background:rgba(255,68,68,.12);
+    border:1px solid rgba(255,68,68,.3);
+    color:var(--red);border-radius:8px;
+    padding:9px 13px;font-size:.82rem;
+    font-weight:700;margin-bottom:14px;display:none;
+  }
+  .auth-error.show { display:block; }
+  .auth-success {
+    background:rgba(0,230,118,.1);
+    border:1px solid rgba(0,230,118,.3);
+    color:var(--green);border-radius:8px;
+    padding:9px 13px;font-size:.82rem;
+    font-weight:700;margin-bottom:14px;display:none;
+  }
+  .auth-success.show { display:block; }
+
+  .btn-auth {
+    width:100%;padding:14px;
+    background:linear-gradient(90deg,var(--gold),var(--gold2));
+    color:var(--dark);font-weight:800;font-size:1rem;
+    border:none;border-radius:12px;cursor:pointer;
+    transition:.2s;font-family:'Nunito',sans-serif;
+    margin-top:4px;
+  }
+  .btn-auth:hover { opacity:.88;transform:translateY(-1px); }
+  .btn-auth:disabled { opacity:.5;cursor:not-allowed;transform:none; }
+
+  .auth-divider {
+    display:flex;align-items:center;gap:10px;
+    margin:18px 0;color:var(--muted);font-size:.78rem;
+  }
+  .auth-divider::before,.auth-divider::after {
+    content:'';flex:1;height:1px;background:var(--border);
+  }
+
+  /* Group link in auth */
+  .group-cta {
+    display:flex;align-items:center;gap:12px;
+    background:rgba(37,211,102,.08);
+    border:1.5px solid rgba(37,211,102,.25);
+    border-radius:13px;padding:14px 16px;
+    text-decoration:none;margin-top:16px;
+    transition:.2s;
+  }
+  .group-cta:hover { background:rgba(37,211,102,.15); }
+  .group-cta-icon { font-size:1.6rem;flex-shrink:0; }
+  .group-cta-text strong {
+    display:block;color:#25D366;font-size:.9rem;
+    font-weight:800;
+  }
+  .group-cta-text span { color:var(--muted);font-size:.78rem; }
+
+  .auth-footer {
+    text-align:center;margin-top:20px;
+    font-size:.78rem;color:var(--muted);
+    line-height:1.6;
+  }
+  .auth-footer a { color:var(--gold);text-decoration:none; }
+
+  /* ===== LOGGED IN — WELCOME BAR ===== */
+  #user-bar {
+    display:none;
+    background:rgba(0,230,118,.08);
+    border-bottom:1px solid rgba(0,230,118,.2);
+    padding:8px 16px;
+    text-align:center;font-size:.83rem;
+  }
+  #user-bar span { color:var(--green);font-weight:700; }
+  #user-bar button {
+    background:none;border:1px solid var(--red);color:var(--red);
+    padding:3px 12px;border-radius:8px;cursor:pointer;
+    font-size:.75rem;font-weight:700;margin-left:14px;
+    font-family:'Nunito',sans-serif;
+  }
+
+  /* NAV */
+  nav{background:rgba(10,14,26,0.97);border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:999;padding:0 16px;}
+  .nav-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:60px;flex-wrap:wrap;gap:6px;}
+  .logo{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--gold);letter-spacing:2px;cursor:pointer;}
+  .logo span{color:var(--gold2);}
+  .nav-links{display:flex;gap:4px;flex-wrap:wrap;}
+  .nav-btn{background:none;border:none;color:var(--text);font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;padding:7px 12px;border-radius:8px;cursor:pointer;transition:.2s;}
+  .nav-btn:hover,.nav-btn.active{background:var(--gold);color:var(--dark);}
+
+  /* SECTIONS */
+  .section{display:none;min-height:90vh;padding:28px 16px;}
+  .section.active{display:block;}
+  .container{max-width:1000px;margin:auto;}
+
+  /* HERO */
+  .hero{text-align:center;padding:50px 16px 30px;}
+  .hero-badge{display:inline-block;background:linear-gradient(90deg,var(--gold),var(--gold2));color:var(--dark);font-weight:800;font-size:.8rem;letter-spacing:2px;padding:5px 18px;border-radius:20px;margin-bottom:18px;text-transform:uppercase;}
+  .hero h1{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;color:#fff;margin-bottom:10px;}
+  .hero h1 span{color:var(--gold);}
+  .hero p{color:var(--muted);font-size:1.05rem;max-width:560px;margin:0 auto 28px;}
+  .btn-gold{background:linear-gradient(90deg,var(--gold),var(--gold2));color:var(--dark);font-weight:800;font-size:1rem;padding:13px 32px;border-radius:12px;border:none;cursor:pointer;transition:.2s;text-decoration:none;display:inline-block;}
+  .btn-gold:hover{opacity:.85;transform:translateY(-2px);}
+  .btn-outline{background:none;border:2px solid var(--gold);color:var(--gold);font-weight:700;font-size:.95rem;padding:11px 28px;border-radius:12px;cursor:pointer;transition:.2s;text-decoration:none;display:inline-block;margin-left:10px;}
+  .btn-outline:hover{background:var(--gold);color:var(--dark);}
+
+  /* CARDS */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin:28px 0;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;transition:.2s;}
+  .card:hover{border-color:var(--gold);transform:translateY(-3px);}
+  .card-icon{font-size:2rem;margin-bottom:10px;}
+  .card h3{font-size:1.05rem;font-weight:800;color:var(--gold);margin-bottom:6px;}
+  .card p{font-size:.88rem;color:var(--muted);}
+
+  /* SECTION TITLE */
+  .sec-title{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--gold);margin-bottom:6px;}
+  .sec-sub{color:var(--muted);font-size:.95rem;margin-bottom:24px;}
+
+  /* FORMATION */
+  .lessons{display:flex;flex-direction:column;gap:12px;}
+  .lesson{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;cursor:pointer;transition:.2s;}
+  .lesson:hover{border-color:var(--gold);}
+  .lesson-header{display:flex;align-items:center;gap:12px;}
+  .lesson-num{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--dark);font-weight:800;font-size:.8rem;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .lesson-title{font-weight:800;font-size:1rem;}
+  .lesson-tag{margin-left:auto;background:rgba(0,230,118,.15);color:var(--green);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:20px;}
+  .lesson-tag.inter{background:rgba(56,189,248,.15);color:var(--blue);}
+  .lesson-body{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:.9rem;color:var(--text);line-height:1.75;}
+  .lesson-body.open{display:block;}
+  .lesson-body h4{color:var(--gold);margin:12px 0 6px;font-size:.95rem;}
+  .lesson-body ul{padding-left:18px;}
+  .lesson-body ul li{margin-bottom:5px;}
+  .tip-box{background:rgba(255,215,0,.07);border-left:3px solid var(--gold);padding:10px 14px;border-radius:0 10px 10px 0;margin:10px 0;font-size:.85rem;}
+
+  /* JOURNAL */
+  .journal-form{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:24px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+  .form-row.single{grid-template-columns:1fr;}
+  label{font-size:.82rem;font-weight:700;color:var(--muted);display:block;margin-bottom:4px;}
+  input,select,textarea{width:100%;background:var(--dark3);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text);font-family:'Nunito',sans-serif;font-size:.9rem;outline:none;transition:.2s;}
+  input:focus,select:focus,textarea:focus{border-color:var(--gold);}
+  textarea{resize:vertical;min-height:80px;}
+  .trades-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.85rem;}
+  .trades-table th{background:var(--dark3);color:var(--gold);padding:10px 12px;text-align:left;font-size:.78rem;letter-spacing:.5px;}
+  .trades-table td{padding:10px 12px;border-bottom:1px solid var(--border);}
+  .badge-win{background:rgba(0,230,118,.15);color:var(--green);padding:3px 10px;border-radius:20px;font-weight:700;font-size:.78rem;}
+  .badge-loss{background:rgba(255,68,68,.15);color:var(--red);padding:3px 10px;border-radius:20px;font-weight:700;font-size:.78rem;}
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px;}
+  .stat-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;text-align:center;}
+  .stat-val{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--gold);}
+  .stat-label{font-size:.75rem;color:var(--muted);font-weight:700;margin-top:2px;}
+
+  /* MARCHÉ */
+  .market-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:24px;}
+  .market-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;cursor:pointer;transition:.2s;}
+  .market-card:hover,.market-card.selected{border-color:var(--gold);}
+  .market-pair{font-weight:800;font-size:1.1rem;}
+  .market-price{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--text);}
+  .market-change{font-size:.85rem;font-weight:700;}
+  .up{color:var(--green);}
+  .down{color:var(--red);}
+  .chart-area{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:20px;}
+  .chart-title{font-weight:800;font-size:1rem;margin-bottom:12px;color:var(--gold);}
+  canvas{width:100%!important;border-radius:10px;}
+  .trade-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;}
+  .trade-tabs{display:flex;gap:8px;margin-bottom:18px;}
+  .trade-tab{flex:1;padding:10px;border-radius:10px;border:2px solid transparent;font-weight:800;font-size:.95rem;cursor:pointer;transition:.2s;background:var(--dark3);color:var(--muted);}
+  .trade-tab.buy{border-color:var(--green);color:var(--green);}
+  .trade-tab.buy.active,.trade-tab.buy:hover{background:var(--green);color:var(--dark);}
+  .trade-tab.sell{border-color:var(--red);color:var(--red);}
+  .trade-tab.sell.active,.trade-tab.sell:hover{background:var(--red);color:#fff;}
+  .balance-bar{display:flex;align-items:center;justify-content:space-between;background:var(--dark3);border-radius:12px;padding:12px 18px;margin-bottom:16px;}
+  .balance-label{font-size:.8rem;color:var(--muted);font-weight:700;}
+  .balance-val{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--gold);}
+  .open-trades{margin-top:20px;}
+  .open-trade-row{display:flex;align-items:center;justify-content:space-between;background:var(--dark3);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:.85rem;}
+  .close-btn{background:var(--red);color:#fff;border:none;padding:5px 12px;border-radius:8px;cursor:pointer;font-weight:700;font-size:.78rem;}
+  .close-btn:hover{opacity:.8;}
+  .pnl-pos{color:var(--green);font-weight:800;}
+  .pnl-neg{color:var(--red);font-weight:800;}
+
+  /* STRATÉGIES */
+  .strat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+  .strat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;cursor:pointer;transition:.2s;}
+  .strat-card:hover{border-color:var(--gold);}
+  .strat-icon{font-size:2rem;margin-bottom:10px;}
+  .strat-card h3{color:var(--gold);font-size:1rem;font-weight:800;margin-bottom:6px;}
+  .strat-card p{font-size:.85rem;color:var(--muted);margin-bottom:10px;}
+  .strat-tag{display:inline-block;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:20px;}
+  .tag-easy{background:rgba(0,230,118,.15);color:var(--green);}
+  .tag-med{background:rgba(56,189,248,.15);color:var(--blue);}
+  .strat-detail{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:.88rem;line-height:1.75;color:var(--text);}
+  .strat-detail.open{display:block;}
+  .strat-detail h4{color:var(--gold2);margin:10px 0 5px;}
+
+  /* CONTACT */
+  .contact-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px;text-align:center;max-width:520px;margin:auto;}
+  .contact-box h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);margin-bottom:10px;}
+  .contact-box p{color:var(--muted);margin-bottom:20px;font-size:.95rem;}
+  .contact-item{display:flex;align-items:center;gap:12px;background:var(--dark3);border-radius:12px;padding:14px 18px;margin-bottom:12px;font-weight:700;}
+  .contact-item a{color:var(--gold);text-decoration:none;}
+  .contact-item a:hover{text-decoration:underline;}
+  .wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;font-weight:800;font-size:1rem;padding:14px 28px;border-radius:14px;text-decoration:none;margin-top:14px;transition:.2s;}
+  .wa-btn:hover{opacity:.85;}
+
+  /* TOAST */
+  #toast{position:fixed;bottom:24px;right:24px;background:var(--green);color:var(--dark);font-weight:800;padding:12px 22px;border-radius:12px;font-size:.9rem;display:none;z-index:9999;}
+
+  /* RESPONSIVE */
+  @media(max-width:600px){
+    .hero h1{font-size:2.2rem;}
+    .form-row{grid-template-columns:1fr;}
+    .nav-links{gap:2px;}
+    .nav-btn{padding:6px 8px;font-size:.78rem;}
+    .auth-box{padding:22px 18px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================= -->
+<!--   AUTH OVERLAY (shown first)  -->
+<!-- ============================= -->
+<div id="auth-overlay">
+  <div class="auth-wrapper">
+
+    <div class="auth-logo">LEADER <span>BBS</span> GUIDE</div>
+    <div class="auth-tagline">📈 Plateforme de trading — Connectez-vous pour accéder au contenu</div>
+
+    <!-- Tabs -->
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchAuthTab('login')">🔐 Connexion</button>
+      <button class="auth-tab" onclick="switchAuthTab('register')">✨ Inscription</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="auth-form active" id="form-login">
+      <div class="auth-box">
+        <h2>Bon retour 👋</h2>
+        <div class="sub">Connectez-vous avec votre adresse email</div>
+
+        <div class="auth-error" id="login-error"></div>
+        <div class="auth-success" id="login-success"></div>
+
+        <div class="auth-field">
+          <label>ADRESSE EMAIL</label>
+          <input type="email" id="login-email" placeholder="votre@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label>MOT DE PASSE</label>
+          <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
+        </div>
+
+        <button class="btn-auth" onclick="handleLogin()">Se connecter →</button>
+
+        <div class="auth-divider">ou rejoindre la communauté</div>
+
+        <a class="group-cta" href="https://chat.whatsapp.com/L40NPyQK3fSIlb4rsfeJ5j" target="_blank">
+          <div class="group-cta-icon">👥</div>
+          <div class="group-cta-text">
+            <strong>Rejoindre le Groupe Privé WhatsApp</strong>
+            <span>Signaux live · Suivi · Communauté gratuite</span>
+          </div>
+        </a>
+
+        <div class="auth-footer">
+          Pas encore de compte ? <a href="#" onclick="switchAuthTab('register')">S'inscrire gratuitement</a><br>
+          Contact : <a href="mailto:bblaoga9@gmail.com">bblaoga9@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="auth-form" id="form-register">
+      <div class="auth-box">
+        <h2>Créer un compte 🚀</h2>
+        <div class="sub">Inscription gratuite — accès immédiat à toute la plateforme</div>
+
+        <div class="auth-error" id="register-error"></div>
+        <div class="auth-success" id="register-success"></div>
+
+        <div class="auth-field">
+          <label>PRÉNOM / PSEUDO</label>
+          <input type="text" id="register-name" placeholder="Votre prénom ou pseudo">
+        </div>
+        <div class="auth-field">
+          <label>ADRESSE EMAIL ✉️</label>
+          <input type="email" id="register-email" placeholder="votre@email.com" autocomplete="email">
+        </div>
+        <div class="auth-field">
+          <label>MOT DE PASSE (min. 6 caractères)</label>
+          <input type="password" id="register-password" placeholder="Choisissez un mot de passe" autocomplete="new-password">
+        </div>
+        <div class="auth-field">
+          <label>CONFIRMER LE MOT DE PASSE</label>
+          <input type="password" id="register-confirm" placeholder="Confirmez votre mot de passe" autocomplete="new-password">
+        </div>
+
+        <button class="btn-auth" onclick="handleRegister()">Créer mon compte →</button>
+
+        <div class="auth-divider">rejoindre également</div>
+
+        <a class="group-cta" href="https://chat.whatsapp.com/L40NPyQK3fSIlb4rsfeJ5j" target="_blank">
+          <div class="group-cta-icon">👥</div>
+          <div class="group-cta-text">
+            <strong>Rejoindre le Groupe Privé WhatsApp</strong>
+            <span>Signaux live · Suivi · Communauté gratuite</span>
+          </div>
+        </a>
+
+        <div class="auth-footer">
+          Déjà un compte ? <a href="#" onclick="switchAuthTab('login')">Se connecter</a><br>
+          Contact & support : <a href="mailto:bblaoga9@gmail.com">bblaoga9@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================= -->
+<!--   MAIN APP (locked until auth) -->
+<!-- ============================= -->
+
+<!-- User welcome bar -->
+<div id="user-bar">
+  Connecté en tant que <span id="user-display">—</span>
+  <button onclick="handleLogout()">Déconnexion</button>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="showSection('home')">LEADER <span>BBS</span> GUIDE</div>
+    <div class="nav-links">
+      <button class="nav-btn active" onclick="showSection('home')">🏠 Accueil</button>
+      <button class="nav-btn" onclick="showSection('formation')">📚 Formation</button>
+      <button class="nav-btn" onclick="showSection('strategies')">🎯 Stratégies</button>
+      <button class="nav-btn" onclick="showSection('marche')">📈 Marché Virtuel</button>
+      <button class="nav-btn" onclick="showSection('journal')">📓 Journal</button>
+      <button class="nav-btn" onclick="showSection('contact')">💬 Contact</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="section-home" class="section active">
+  <div class="hero">
+    <div class="hero-badge">🚀 100% Gratuit – Pour Débutants</div>
+    <h1>LEADER <span>BBS</span> GUIDE</h1>
+    <p>Apprends le trading depuis zéro, pratique sur des marchés réels simulés, et suis tes progrès — tout gratuitement.</p>
+    <button class="btn-gold" onclick="showSection('formation')">Commencer la Formation</button>
+    <button class="btn-outline" onclick="showSection('marche')">Trader en Virtuel</button>
+  </div>
+  <div class="container">
+    <div class="cards">
+      <div class="card" onclick="showSection('formation')">
+        <div class="card-icon">📚</div>
+        <h3>Formation Complète</h3>
+        <p>Du vocabulaire de base jusqu'aux analyses technique et fondamentale, étape par étape.</p>
+      </div>
+      <div class="card" onclick="showSection('strategies')">
+        <div class="card-icon">🎯</div>
+        <h3>Stratégies de Trading</h3>
+        <p>Scalping, swing trading, tendance, support/résistance… toutes les stratégies expliquées simplement.</p>
+      </div>
+      <div class="card" onclick="showSection('marche')">
+        <div class="card-icon">📈</div>
+        <h3>Marché Virtuel Réel</h3>
+        <p>Entraîne-toi avec de vrais prix (EUR/USD, BTC, or…) sans risquer un seul franc.</p>
+      </div>
+      <div class="card" onclick="showSection('journal')">
+        <div class="card-icon">📓</div>
+        <h3>Journal de Trading</h3>
+        <p>Enregistre chaque trade, analyse tes performances et progresse plus vite.</p>
+      </div>
+    </div>
+
+    <!-- Group CTA on home page -->
+    <div style="background:linear-gradient(135deg,rgba(37,211,102,.08),rgba(37,211,102,.03));border:1.5px solid rgba(37,211,102,.25);border-radius:18px;padding:28px;text-align:center;margin-bottom:18px;">
+      <div style="font-size:2.5rem;margin-bottom:10px;">👥</div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#25D366;margin-bottom:8px;">Rejoindre le Groupe Privé</h2>
+      <p style="color:var(--muted);max-width:500px;margin:0 auto 20px;font-size:.95rem;">Signaux de trading en live, suivi quotidien, questions-réponses et entraide entre membres — tout est gratuit.</p>
+      <a class="wa-btn" href="https://chat.whatsapp.com/L40NPyQK3fSIlb4rsfeJ5j" target="_blank" style="max-width:320px;margin:0 auto;">
+        <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Rejoindre le Groupe Gratuit
+      </a>
+    </div>
+
+    <div style="background:linear-gradient(135deg,var(--card),var(--dark3));border:1px solid var(--border);border-radius:18px;padding:28px;text-align:center;margin-top:10px;">
+      <div style="font-size:2.5rem;margin-bottom:10px;">💡</div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--gold);margin-bottom:8px;">La Règle N°1 du Débutant</h2>
+      <p style="color:var(--muted);max-width:500px;margin:auto;font-size:.95rem;">Ne jamais risquer plus de <strong style="color:var(--gold)">1% à 2%</strong> de ton capital sur un seul trade. Apprends d'abord en virtuel, trade réel ensuite.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FORMATION -->
+<div id="section-formation" class="section">
+  <div class="container">
+    <div class="sec-title">📚 Formation Trading Débutant</div>
+    <div class="sec-sub">Clique sur chaque leçon pour la lire. Commence par le début !</div>
+
+    <div class="lessons">
+
+      <div class="lesson" onclick="toggleLesson(this)">
+        <div class="lesson-header">
+          <div class="lesson-num">1</div>
+          <div class="lesson-title">C'est quoi le Trading ? Les bases absolues</div>
+          <div class="lesson-tag">Débutant</div>
+        </div>
+        <div class="lesson-body">
+          <p>Le trading consiste à <strong>acheter et vendre des actifs financiers</strong> dans le but de faire un profit. Ces actifs peuvent être des devises (Forex), des actions, des cryptomonnaies, des matières premières (or, pétrole).</p>
+          <h4>Les principaux marchés :</h4>
+          <ul>
+            <li><strong>Forex</strong> – Marché des devises (EUR/USD, USD/JPY…). Le plus grand marché au monde.</li>
+            <li><strong>Actions</strong> – Parts d'entreprises (Apple, Tesla, Amazon…)</li>
+            <li><strong>Cryptomonnaies</strong> – Bitcoin, Ethereum…</li>
+            <li><strong>Matières premières</strong> – Or, argent, pétrole…</li>
+            <li><strong>Indices</strong> – Groupes d'actions (CAC40, S&P500, Nasdaq…)</li>
+          </ul>
+          <div class="tip-box">💡 <strong>Astuce :</strong> Commence par le Forex EUR/USD. C'est le plus simple et le plus liquide pour débuter.</div>
+        </div>
+      </div>
+
+      <div class="lesson" onclick="toggleLesson(this)">
+        <div class="lesson-header">
+          <div class="lesson-num">2</div>
+          <div class="lesson-title">Le vocabulaire essentiel du Trading</div>
+          <div class="lesson-tag">Débutant</div>
+        </div>
+        <div class="lesson-body">
+          <h4>Les mots clés à connaître :</h4>
+          <ul>
+            <li><strong>Pip</strong> – La plus petite variation de prix. Ex: EUR/USD passe de 1.0800 à 1.0801 = +1 pip.</li>
+            <li><strong>Lot</strong> – Quantité tradée. 1 lot standard = 100 000 unités de la devise.</li>
+            <li><strong>Levier</strong> – Multiplicateur de ta mise. Levier 1:100 = tu contrôles 100x ton capital (dangereux!).</li>
+            <li><strong>Spread</strong> – La différence entre le prix d'achat (Ask) et de vente (Bid). C'est le coût du trade.</li>
+            <li><strong>Stop Loss (SL)</strong> – Niveau de prix où ton trade se ferme automatiquement pour limiter la perte.</li>
+            <li><strong>Take Profit (TP)</strong> – Niveau de prix où ton trade se ferme automatiquement pour prendre le profit.</li>
+            <li><strong>Long / Buy</strong> – Acheter en espérant que le prix monte.</li>
+            <li><strong>Short / Sell</strong> – Vendre en espérant que le prix baisse.</li>
+            <li><strong>Liquidité</strong> – Facilité à acheter/vendre sans bouger le marché.</li>
+          </ul>
+          <div class="tip-box">💡 <strong>Règle d'or :</strong> Toujours placer un <strong>Stop Loss</strong> sur chaque trade. Sans SL, une seule mauvaise position peut effacer tout ton compte.</div>
+        </div>
+      </div>
+
+      <div class="lesson" onclick="toggleLesson(this)">
+        <div class="lesson-header">
+          <div class="lesson-num">3</div>
+          <div class="lesson-title">Analyse Technique – Lire les graphiques</div>
+          <div class="lesson-tag">Débutant</div>
+        </div>
+        <div class="lesson-body">
+          <p>L'analyse technique consiste à étudier les graphiques de prix pour prédire les mouvements futurs.</p>
+          <h4>Les types de graphiques :</h4>
+          <ul>
+            <li><strong>Bougies japonaises (Candlestick)</strong> – Le plus utilisé. Chaque bougie montre l'ouverture, la fermeture, le haut et le bas sur une période.</li>
+            <li><strong>Graphique en ligne</strong> – Simple, montre juste le prix de clôture.</li>
+            <li><strong>Graphique en barre (OHLC)</strong> – Similaire aux bougies, moins visuel.</li>
+          </ul>
+          <h4>Les concepts clés :</h4>
+          <ul>
+            <li><strong>Support</strong> – Zone de prix où les acheteurs sont forts. Le prix rebondit souvent à la hausse.</li>
+            <li><strong>Résistance</strong> – Zone de prix où les vendeurs sont forts. Le prix rebondit souvent à la baisse.</li>
+            <li><strong>Tendance (Trend)</strong> – Direction générale du marché : haussière (uptrend), baissière (downtrend), neutre (range).</li>
+            <li><strong>Moyennes Mobiles (MA)</strong> – Indicateur qui lisse les prix pour identifier la tendance.</li>
+          </ul>
+          <div class="tip-box">📊 Pratique sur TradingView.com — gratuit et très complet pour apprendre à lire les graphiques.</div>
+        </div>
+      </div>
+
+      <div class="lesson" onclick="toggleLesson(this)">
+        <div class="lesson-header">
+          <div class="lesson-num">4</div>
+          <div class="lesson-title">Gestion du Risque – La clé de la survie</div>
+          <div class="lesson-tag">Débutant</div>
+        </div>
+        <div class="lesson-body">
+          <p>90% des traders perdent à cause d'une mauvaise gestion du risque, pas d'une mauvaise stratégie.</p>
+          <h4>Les règles fondamentales :</h4>
+          <ul>
+            <li><strong>Règle des 1-2%</strong> – Ne jamais risquer plus de 1% à 2% de ton capital sur un seul trade.</li>
+            <li><strong>Ratio Risk/Reward</strong> – Vise toujours au minimum un ratio 1:2 (tu risques 10$, tu vises 20$).</li>
+            <li><strong>Stop Loss obligatoire</strong> – Toujours, sans exception.</li>
+            <li><strong>Taille de position</strong> – Calcule toujours ta taille de lot en fonction de ton stop loss et de ton capital.</li>
+          </ul>
+          <div class="tip-box">🔢 Formule : Mise = (Capital × % Risque) ÷ Distance SL en pips. Ex: 1000$ × 1% ÷ 20 pips = 0.5$ par pip.</div>
+        </div>
+      </div>
+
+      <div class="lesson" onclick="toggleLesson(this)">
+        <div class="lesson-header">
+          <div class="lesson-num">5</div>
+          <div class="lesson-title">Psychologie du Trader</div>
+          <div class="lesson-tag">Débutant</div>
+        </div>
+        <div class="lesson-body">
+          <p>Le trading est un jeu mental. Les émotions sont ton plus grand ennemi.</p>
+          <h4>Les pièges émotionnels :</h4>
+          <ul>
+            <li><strong>FOMO (Fear Of Missing Out)</strong> – Entrer un trade par peur de rater. Souvent au mauvais moment.</li>
+            <li><strong>Revenge Trading</strong> – Trader pour "récupérer" une perte. Très dangereux.</li>
+            <li><strong>Sur-trading</strong> – Ouvrir trop de trades par ennui ou impatience.</li>
+            <li><strong>Enlever son SL</strong> – Espérer un retournement qui ne vient pas.</li>
+          </ul>
+          <h4>Les bonnes habitudes :</h4>
+          <ul>
+            <li>Toujours avoir un plan avant d'entrer un trade.</li>
+            <li>Respecter ton plan même si c'est difficile.</li>
+            <li>Tenir un journal de trading pour analyser tes erreurs.</li>
+            <li>Se déconnecter après une grosse perte.</li>
+          </ul>
+          <div class="tip-box">🧠 La discipline + la patience = les 2 qualités les plus importantes d'un trader rentable.</div>
+        </div>
+      </div>
+
+      <div class="lesson" onclick="toggleLesson(this)">
+        <div class="lesson-header">
+          <div class="lesson-num">6</div>
+          <div class="lesson-title">Créer ton Plan de Trading</div>
+          <div class="lesson-tag">Débutant</div>
+        </div>
+        <div class="lesson-body">
+          <p>Un trader sans plan est comme un chauffeur sans GPS. Un plan de trading définit exactement quand et comment tu trades.</p>
+          <h4>Ton plan doit inclure :</h4>
+          <ul>
+            <li><strong>Marché(s) tradé(s)</strong> – EUR/USD, BTC… Commence par 1-2 paires maximum.</li>
+            <li><strong>Timeframe(s)</strong> – H1, H4, Daily… Choisis et reste constant.</li>
+            <li><strong>Conditions d'entrée</strong> – Quels signaux précis déclenchent une entrée ?</li>
+            <li><strong>Gestion du risque</strong> – % risqué, ratio R/R minimum.</li>
+            <li><strong>Heures de trading</strong> – Quand traderas-tu ? Sessions London/New York recommandées.</li>
+            <li><strong>Objectifs</strong> – % mensuel visé réaliste (3-5% pour débuter).</li>
+          </ul>
+          <div class="tip-box">💪 <strong>La discipline bat l'intelligence en trading.</strong> Un plan simple respecté vaut mieux qu'une stratégie complexe ignorée.</div>
+        </div>
+      </div>
+
+      <div class="lesson" onclick="toggleLesson(this)">
+        <div class="lesson-header">
+          <div class="lesson-num">7</div>
+          <div class="lesson-title">Analyse Fondamentale simplifiée</div>
+          <div class="lesson-tag inter">Intermédiaire</div>
+        </div>
+        <div class="lesson-body">
+          <p>L'analyse fondamentale consiste à étudier les <strong>nouvelles économiques</strong> qui font bouger les marchés.</p>
+          <h4>Les événements importants :</h4>
+          <ul>
+            <li><strong>NFP (Non-Farm Payrolls)</strong> – Données emploi américaines. Très fort impact sur le dollar.</li>
+            <li><strong>Décisions des banques centrales (FED, BCE)</strong> – Taux d'intérêt. Impact majeur sur toutes les devises.</li>
+            <li><strong>Inflation (CPI)</strong> – Si inflation élevée → banque centrale peut monter les taux → devise se renforce.</li>
+            <li><strong>PIB (GDP)</strong> – Croissance économique. Bonne croissance = devise forte.</li>
+          </ul>
+          <h4>Conseil pratique :</h4>
+          <p>Utilise un <strong>calendrier économique</strong> (Forexfactory.com) pour éviter de trader pendant les grosses annonces si tu es débutant.</p>
+          <div class="tip-box">💡 Pour débuter, concentre-toi sur l'analyse technique. L'analyse fondamentale s'apprend avec l'expérience.</div>
+        </div>
+      </div>
+
+      <div class="lesson" onclick="toggleLesson(this)">
+        <div class="lesson-header">
+          <div class="lesson-num">8</div>
+          <div class="lesson-title">Comment ouvrir un compte et choisir un broker</div>
+          <div class="lesson-tag">Débutant</div>
+        </div>
+        <div class="lesson-body">
+          <h4>Critères pour choisir un bon broker :</h4>
+          <ul>
+            <li><strong>Régulation</strong> – Choisis un broker régulé (CySEC, FCA, ASIC…). Evite les brokers non régulés.</li>
+            <li><strong>Compte Démo</strong> – Le broker doit proposer un compte démo gratuit pour s'entraîner.</li>
+            <li><strong>Spread faible</strong> – Plus le spread est faible, moins tu paies à chaque trade.</li>
+            <li><strong>Plateforme</strong> – MetaTrader 4/5 (MT4/MT5) sont les plus populaires et faciles à utiliser.</li>
+            <li><strong>Dépôt minimum</strong> – Certains brokers acceptent à partir de 10$.</li>
+          </ul>
+          <h4>Brokers populaires :</h4>
+          <ul>
+            <li>XM, Exness, IC Markets, Pepperstone, OctaFX (bien vérifier la disponibilité dans ton pays).</li>
+          </ul>
+          <div class="tip-box">⚠️ <strong>Commence TOUJOURS par un compte démo</strong> avant de mettre de l'argent réel. Pratique au moins 3 mois en démo.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- STRATÉGIES -->
+<div id="section-strategies" class="section">
+  <div class="container">
+    <div class="sec-title">🎯 Stratégies de Trading</div>
+    <div class="sec-sub">Clique sur une stratégie pour voir les détails et comment l'appliquer.</div>
+    <div class="strat-grid">
+
+      <div class="strat-card" onclick="toggleStrat(this)">
+        <div class="strat-icon">⚡</div>
+        <h3>Scalping</h3>
+        <p>Trades très rapides, quelques secondes à quelques minutes. Beaucoup de trades par jour.</p>
+        <span class="strat-tag tag-med">Intermédiaire</span>
+        <div class="strat-detail">
+          <h4>Principe :</h4>
+          <p>Profiter de petits mouvements de prix répétés. On vise 2 à 10 pips par trade.</p>
+          <h4>Comment l'appliquer :</h4>
+          <ul style="padding-left:16px;margin-top:6px;">
+            <li>Utilise des unités de temps courtes : M1 (1 minute), M5 (5 minutes)</li>
+            <li>Cherche les niveaux de support/résistance clés</li>
+            <li>Entre au rebond, SL court (3-5 pips), TP 6-10 pips</li>
+            <li>Nécessite concentration et rapidité</li>
+          </ul>
+          <div class="tip-box">⚠️ Difficile pour les débutants à cause du stress et des frais de spread qui s'accumulent.</div>
+        </div>
+      </div>
+
+      <div class="strat-card" onclick="toggleStrat(this)">
+        <div class="strat-icon">🌊</div>
+        <h3>Swing Trading</h3>
+        <p>Garder des positions de quelques jours à quelques semaines. Idéal pour débutants.</p>
+        <span class="strat-tag tag-easy">Débutant ✓</span>
+        <div class="strat-detail">
+          <h4>Principe :</h4>
+          <p>Capter les "vagues" du marché. On achète au bas de la vague et on vend au sommet (ou inversement).</p>
+          <h4>Comment l'appliquer :</h4>
+          <ul style="padding-left:16px;margin-top:6px;">
+            <li>Utilise les graphiques H4 (4h) et Daily (1 jour)</li>
+            <li>Identifie la tendance principale sur le Daily</li>
+            <li>Entre en H4 lors d'une correction de prix</li>
+            <li>SL sous le dernier bas, TP au prochain niveau de résistance</li>
+          </ul>
+          <div class="tip-box">✅ Recommandé pour débutants : moins stressant, plus de temps pour analyser.</div>
+        </div>
+      </div>
+
+      <div class="strat-card" onclick="toggleStrat(this)">
+        <div class="strat-icon">📏</div>
+        <h3>Trading de Support/Résistance</h3>
+        <p>Acheter aux supports, vendre aux résistances. Simple et efficace.</p>
+        <span class="strat-tag tag-easy">Débutant ✓</span>
+        <div class="strat-detail">
+          <h4>Principe :</h4>
+          <p>Les prix ont tendance à "rebondir" sur des niveaux clés. Ces niveaux ont été testés plusieurs fois.</p>
+          <h4>Comment l'appliquer :</h4>
+          <ul style="padding-left:16px;margin-top:6px;">
+            <li>Identifie les niveaux de prix testés 2-3 fois minimum</li>
+            <li>Attends que le prix arrive à ce niveau</li>
+            <li>Entre BUY au support (bougie de confirmation)</li>
+            <li>Entre SELL à la résistance (bougie de confirmation)</li>
+            <li>SL juste au-dessus de la résistance ou en-dessous du support</li>
+          </ul>
+          <div class="tip-box">✅ Très visuel et logique. Parfait pour apprendre à lire les graphiques.</div>
+        </div>
+      </div>
+
+      <div class="strat-card" onclick="toggleStrat(this)">
+        <div class="strat-icon">📉</div>
+        <h3>Trading de Tendance (Trend Following)</h3>
+        <p>Suivre la tendance principale du marché. "The trend is your friend".</p>
+        <span class="strat-tag tag-easy">Débutant ✓</span>
+        <div class="strat-detail">
+          <h4>Principe :</h4>
+          <p>Si le marché monte, on achète uniquement. Si le marché descend, on vend uniquement. Simple mais puissant.</p>
+          <h4>Comment l'appliquer :</h4>
+          <ul style="padding-left:16px;margin-top:6px;">
+            <li>Vérifie la tendance sur Daily et H4</li>
+            <li>Utilise la MA 50 et MA 200 : si prix > MA200 = tendance haussière</li>
+            <li>N'entre en BUY que si tendance est haussière</li>
+            <li>Entre lors des corrections (retours sur la MA 50)</li>
+            <li>Gère avec un trailing stop</li>
+          </ul>
+          <div class="tip-box">✅ La stratégie la plus sûre pour débutants. Ne jamais aller contre la tendance.</div>
+        </div>
+      </div>
+
+      <div class="strat-card" onclick="toggleStrat(this)">
+        <div class="strat-icon">🔄</div>
+        <h3>Trading en Range</h3>
+        <p>Profiter quand le marché oscille entre deux niveaux sans tendance claire.</p>
+        <span class="strat-tag tag-easy">Débutant ✓</span>
+        <div class="strat-detail">
+          <h4>Principe :</h4>
+          <p>Quand le marché est "flat", il rebondit entre un support et une résistance horizontaux. On achète bas, on vend haut.</p>
+          <h4>Comment l'appliquer :</h4>
+          <ul style="padding-left:16px;margin-top:6px;">
+            <li>Identifie un range sur H1 ou H4 (2 rebonds minimum)</li>
+            <li>BUY près du bas du range, SL sous le support</li>
+            <li>SELL près du haut du range, SL au-dessus de la résistance</li>
+            <li>TP à mi-range ou au niveau opposé</li>
+          </ul>
+          <div class="tip-box">⚠️ Attention aux fausses cassures (breakout). Attends toujours confirmation.</div>
+        </div>
+      </div>
+
+      <div class="strat-card" onclick="toggleStrat(this)">
+        <div class="strat-icon">💥</div>
+        <h3>Trading de Breakout</h3>
+        <p>Profiter quand le prix casse un niveau clé avec force.</p>
+        <span class="strat-tag tag-med">Intermédiaire</span>
+        <div class="strat-detail">
+          <h4>Principe :</h4>
+          <p>Quand le prix casse un support ou résistance avec fort volume, il continue souvent dans la même direction.</p>
+          <h4>Comment l'appliquer :</h4>
+          <ul style="padding-left:16px;margin-top:6px;">
+            <li>Identifie une résistance claire (testée plusieurs fois)</li>
+            <li>Attends la bougie de clôture au-dessus (BUY) ou en-dessous (SELL)</li>
+            <li>Vérifie le volume : doit être plus élevé que la normale</li>
+            <li>Entre au retour sur le niveau cassé (retest)</li>
+            <li>SL sous le niveau cassé, TP = taille du range précédent</li>
+          </ul>
+          <div class="tip-box">💡 Attends le retest plutôt que d'entrer immédiatement — tu évites les faux breakouts.</div>
+        </div>
+      </div>
+
+      <div class="strat-card" onclick="toggleStrat(this)">
+        <div class="strat-icon">📊</div>
+        <h3>Stratégie RSI + Moyenne Mobile</h3>
+        <p>Combiner deux indicateurs pour des signaux plus fiables.</p>
+        <span class="strat-tag tag-easy">Débutant ✓</span>
+        <div class="strat-detail">
+          <h4>Principe :</h4>
+          <p>RSI identifie les zones de surachat/survente. La MA confirme la tendance. Ensemble = signaux plus fiables.</p>
+          <h4>Comment l'appliquer :</h4>
+          <ul style="padding-left:16px;margin-top:6px;">
+            <li>Ajoute MA 50 et RSI (14) sur ton graphique</li>
+            <li>Signal BUY : Prix au-dessus MA50 + RSI remonte depuis moins de 30</li>
+            <li>Signal SELL : Prix en-dessous MA50 + RSI redescend depuis plus de 70</li>
+            <li>Confirme avec une bougie englobante</li>
+          </ul>
+          <div class="tip-box">✅ Cette combinaison simple est l'une des plus utilisées par les débutants sérieux.</div>
+        </div>
+      </div>
+
+      <div class="strat-card" onclick="toggleStrat(this)">
+        <div class="strat-icon">🏗️</div>
+        <h3>Price Action Pure</h3>
+        <p>Trader uniquement avec les bougies, sans indicateurs. La méthode des pros.</p>
+        <span class="strat-tag tag-med">Intermédiaire</span>
+        <div class="strat-detail">
+          <h4>Principe :</h4>
+          <p>Lire directement les patterns de bougies pour anticiper les mouvements. Pas besoin d'indicateurs.</p>
+          <h4>Patterns essentiels :</h4>
+          <ul style="padding-left:16px;margin-top:6px;">
+            <li><strong>Doji</strong> – Indécision du marché. Possible retournement.</li>
+            <li><strong>Marteau (Hammer)</strong> – Au bas d'une baisse = signal de retournement haussier.</li>
+            <li><strong>Étoile filante (Shooting Star)</strong> – Au sommet d'une hausse = signal de retournement baissier.</li>
+            <li><strong>Englobante haussière</strong> – Grande bougie verte qui englobe la rouge précédente = ACHAT.</li>
+            <li><strong>Englobante baissière</strong> – Grande bougie rouge qui englobe la verte = VENTE.</li>
+          </ul>
+          <div class="tip-box">💡 Apprends 2-3 patterns et maîtrise-les avant d'en apprendre d'autres.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MARCHÉ VIRTUEL -->
+<div id="section-marche" class="section">
+  <div class="container">
+    <div class="sec-title">📈 Marché Virtuel d'Entraînement</div>
+    <div class="sec-sub">Prix réels simulés. Capital de départ : 10 000$ virtuels. 0 risque réel !</div>
+
+    <div class="balance-bar">
+      <div>
+        <div class="balance-label">💰 SOLDE VIRTUEL</div>
+        <div class="balance-val" id="balance-display">10,000.00 $</div>
+      </div>
+      <div>
+        <div class="balance-label">📊 P&L TOTAL</div>
+        <div class="balance-val" id="pnl-total" style="color:var(--green)">+0.00 $</div>
+      </div>
+      <div>
+        <div class="balance-label">🔢 TRADES</div>
+        <div class="balance-val" id="trades-count">0</div>
+      </div>
+      <button class="btn-outline" onclick="resetBalance()" style="padding:8px 16px;font-size:.8rem;">🔄 Reset</button>
+    </div>
+
+    <div class="market-grid" id="market-grid"></div>
+
+    <div class="chart-area">
+      <div class="chart-title" id="chart-label">EUR/USD – Évolution du Prix</div>
+      <canvas id="priceChart" height="200"></canvas>
+    </div>
+
+    <div class="trade-panel">
+      <div class="trade-tabs">
+        <button class="trade-tab buy active" id="tab-buy" onclick="setTradeDir('buy')">▲ ACHETER</button>
+        <button class="trade-tab sell" id="tab-sell" onclick="setTradeDir('sell')">▼ VENDRE</button>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Paire / Actif</label>
+          <select id="trade-pair">
+            <option>EUR/USD</option><option>GBP/USD</option><option>USD/JPY</option>
+            <option>BTC/USD</option><option>ETH/USD</option><option>Or (XAU/USD)</option>
+            <option>Pétrole (WTI)</option><option>S&P 500</option>
+          </select>
+        </div>
+        <div>
+          <label>Mise ($)</label>
+          <input type="number" id="trade-amount" value="100" min="10" max="5000" step="10">
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Stop Loss (pips)</label>
+          <input type="number" id="trade-sl" value="20" min="5" max="200">
+        </div>
+        <div>
+          <label>Take Profit (pips)</label>
+          <input type="number" id="trade-tp" value="40" min="10" max="500">
+        </div>
+      </div>
+      <button class="btn-gold" id="open-trade-btn" onclick="openTrade()" style="width:100%;font-size:1rem;padding:14px;">▲ OUVRIR ACHAT</button>
+
+      <div class="open-trades" id="open-trades-section">
+        <div style="font-weight:800;color:var(--gold);margin-bottom:10px;margin-top:18px;">📋 Trades Ouverts</div>
+        <div id="open-trades-list"><div style="color:var(--muted);font-size:.85rem;text-align:center;padding:16px;">Aucun trade ouvert</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNAL -->
+<div id="section-journal" class="section">
+  <div class="container">
+    <div class="sec-title">📓 Journal de Trading</div>
+    <div class="sec-sub">Enregistre chaque trade pour analyser tes performances et progresser.</div>
+
+    <div class="stats-grid" id="journal-stats"></div>
+
+    <div class="journal-form">
+      <div style="font-weight:800;color:var(--gold);margin-bottom:16px;font-size:1.05rem;">➕ Ajouter un Trade</div>
+      <div class="form-row">
+        <div><label>Date</label><input type="date" id="j-date"></div>
+        <div><label>Paire / Actif</label>
+          <select id="j-pair">
+            <option>EUR/USD</option><option>GBP/USD</option><option>USD/JPY</option>
+            <option>BTC/USD</option><option>ETH/USD</option><option>Or (XAU/USD)</option>
+            <option>Pétrole (WTI)</option><option>S&P 500</option><option>Autre</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div><label>Direction</label>
+          <select id="j-dir"><option>BUY (Achat)</option><option>SELL (Vente)</option></select>
+        </div>
+        <div><label>Stratégie utilisée</label>
+          <select id="j-strat">
+            <option>Support/Résistance</option><option>Tendance (Trend)</option><option>Range</option>
+            <option>Breakout</option><option>RSI + MA</option><option>Price Action</option>
+            <option>Scalping</option><option>Swing Trading</option><option>Autre</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div><label>Résultat ($) – négatif si perte</label><input type="number" id="j-result" placeholder="Ex: 25.50 ou -12.00" step="0.01"></div>
+        <div><label>Résultat</label>
+          <select id="j-outcome"><option>WIN ✅</option><option>LOSS ❌</option><option>BREAKEVEN ⚖️</option></select>
+        </div>
+      </div>
+      <div class="form-row single">
+        <div><label>Notes / Analyse (optionnel)</label>
+          <textarea id="j-notes" placeholder="Pourquoi tu as pris ce trade ? Qu'est-ce qui a bien ou mal marché ?"></textarea>
+        </div>
+      </div>
+      <button class="btn-gold" onclick="addJournalEntry()" style="width:100%;">💾 Enregistrer le Trade</button>
+    </div>
+
+    <div style="font-weight:800;color:var(--gold);margin-bottom:12px;font-size:1.05rem;">📋 Historique des Trades</div>
+    <div style="overflow-x:auto;">
+      <table class="trades-table">
+        <thead><tr>
+          <th>Date</th><th>Paire</th><th>Direction</th><th>Stratégie</th><th>Résultat $</th><th>Outcome</th><th>Notes</th><th></th>
+        </tr></thead>
+        <tbody id="journal-body"><tr><td colspan="8" style="text-align:center;color:var(--muted);padding:20px;">Aucun trade enregistré. Commence par ajouter un trade !</td></tr></tbody>
+      </table>
+    </div>
+    <div style="text-align:right;margin-top:12px;">
+      <button class="btn-outline" onclick="exportJournal()" style="font-size:.8rem;padding:8px 16px;">⬇️ Exporter (CSV)</button>
+      <button onclick="clearJournal()" style="background:none;border:1px solid var(--red);color:var(--red);padding:8px 16px;border-radius:10px;cursor:pointer;font-size:.8rem;margin-left:8px;font-weight:700;">🗑️ Effacer tout</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="section-contact" class="section">
+  <div class="container" style="padding:40px 16px;">
+    <div class="contact-box">
+      <div style="font-size:2.5rem;margin-bottom:8px;">🤝</div>
+      <h2>Rejoins la Communauté</h2>
+      <p>Groupe de suivi, questions, partage de signaux — tout est gratuit sur LEADER BBS GUIDE.</p>
+
+      <div class="contact-item">
+        <span style="font-size:1.4rem;">📱</span>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);margin-bottom:2px;">WhatsApp Personnel</div>
+          <a href="https://wa.me/237655752004">+237 655 75 20 04</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <span style="font-size:1.4rem;">✉️</span>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);margin-bottom:2px;">Email</div>
+          <a href="mailto:bblaoga9@gmail.com">bblaoga9@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <span style="font-size:1.4rem;">👥</span>
+        <div>
+          <div style="font-size:.75rem;color:var(--muted);margin-bottom:2px;">Groupe de Suivi WhatsApp</div>
+          <a href="https://chat.whatsapp.com/L40NPyQK3fSIlb4rsfeJ5j" target="_blank">Rejoindre le Groupe →</a>
+        </div>
+      </div>
+
+      <a class="wa-btn" href="https://chat.whatsapp.com/L40NPyQK3fSIlb4rsfeJ5j" target="_blank">
+        <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Rejoindre le Groupe Gratuit
+      </a>
+
+      <div style="margin-top:24px;padding:18px;background:var(--dark3);border-radius:14px;font-size:.85rem;color:var(--muted);line-height:1.7;">
+        <strong style="color:var(--gold);">LEADER BBS GUIDE</strong> est une plateforme 100% gratuite dédiée aux débutants en trading. Notre mission : rendre le trading accessible à tous, avec une communauté bienveillante et des ressources pédagogiques claires.
+        <br><br>📧 Contact : <a href="mailto:bblaoga9@gmail.com" style="color:var(--gold);">bblaoga9@gmail.com</a>
+        <br><br>⚠️ <em>Le trading comporte des risques. Ne tradez jamais de l'argent que vous ne pouvez pas vous permettre de perdre. Commencez toujours par un compte démo.</em>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast">✅ Enregistré avec succès !</div>
+
+<script>
+// ===========================
+//   AUTH SYSTEM
+// ===========================
+const USERS_KEY = 'lbbs_users';
+const SESSION_KEY = 'lbbs_session';
+
+function getUsers() {
+  return JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
+}
+function saveUsers(users) {
+  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+}
+function getSession() {
+  return JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
+}
+function saveSession(user) {
+  localStorage.setItem(SESSION_KEY, JSON.stringify(user));
+}
+function clearSession() {
+  localStorage.removeItem(SESSION_KEY);
+}
+
+function switchAuthTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach((t,i) => {
+    t.classList.toggle('active', (tab==='login' && i===0)||(tab==='register' && i===1));
+  });
+  document.getElementById('form-login').classList.toggle('active', tab==='login');
+  document.getElementById('form-register').classList.toggle('active', tab==='register');
+}
+
+function showAuthError(formId, msg) {
+  const el = document.getElementById(formId+'-error');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 4000);
+}
+function showAuthSuccess(formId, msg) {
+  const el = document.getElementById(formId+'-success');
+  el.textContent = msg;
+  el.classList.add('show');
+}
+
+function handleRegister() {
+  const name  = document.getElementById('register-name').value.trim();
+  const email = document.getElementById('register-email').value.trim().toLowerCase();
+  const pass  = document.getElementById('register-password').value;
+  const conf  = document.getElementById('register-confirm').value;
+
+  document.getElementById('register-error').classList.remove('show');
+  document.getElementById('register-success').classList.remove('show');
+
+  if (!name)  return showAuthError('register','Veuillez entrer votre prénom ou pseudo.');
+  if (!email || !email.includes('@')) return showAuthError('register','Adresse email invalide.');
+  if (pass.length < 6) return showAuthError('register','Le mot de passe doit faire au moins 6 caractères.');
+  if (pass !== conf)  return showAuthError('register','Les mots de passe ne correspondent pas.');
+
+  const users = getUsers();
+  if (users.find(u => u.email === email)) {
+    return showAuthError('register','Cette adresse email est déjà utilisée. Connectez-vous.');
+  }
+
+  const newUser = { id: Date.now(), name, email, pass, createdAt: new Date().toISOString() };
+  users.push(newUser);
+  saveUsers(users);
+  saveSession({ id: newUser.id, name, email });
+
+  showAuthSuccess('register', '✅ Compte créé ! Bienvenue ' + name + ' !');
+  setTimeout(() => unlockApp(name, email), 1200);
+}
+
+function handleLogin() {
+  const email = document.getElementById('login-email').value.trim().toLowerCase();
+  const pass  = document.getElementById('login-password').value;
+
+  document.getElementById('login-error').classList.remove('show');
+
+  if (!email || !email.includes('@')) return showAuthError('login','Adresse email invalide.');
+  if (!pass) return showAuthError('login','Veuillez entrer votre mot de passe.');
+
+  const users = getUsers();
+  const user  = users.find(u => u.email === email && u.pass === pass);
+
+  if (!user) return showAuthError('login','Email ou mot de passe incorrect.');
+
+  saveSession({ id: user.id, name: user.name, email: user.email });
+  unlockApp(user.name, user.email);
+}
+
+function unlockApp(name, email) {
+  document.getElementById('auth-overlay').classList.add('hidden');
+  document.getElementById('user-bar').style.display = 'block';
+  document.getElementById('user-display').textContent = name + ' (' + email + ')';
+  renderMarketGrid();
+  initChart();
+  renderJournal();
+  document.getElementById('j-date').value = today();
+}
+
+function handleLogout() {
+  clearSession();
+  document.getElementById('auth-overlay').classList.remove('hidden');
+  document.getElementById('user-bar').style.display = 'none';
+  // Reset login fields
+  document.getElementById('login-email').value = '';
+  document.getElementById('login-password').value = '';
+  document.getElementById('login-error').classList.remove('show');
+}
+
+// Auto-login if session exists
+window.addEventListener('DOMContentLoaded', () => {
+  const session = getSession();
+  if (session && session.email) {
+    unlockApp(session.name, session.email);
+  }
+  document.getElementById('j-date').value = today();
+  renderJournal();
+});
+
+// ===== NAVIGATION =====
+function showSection(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('section-' + name).classList.add('active');
+  const btns = document.querySelectorAll('.nav-btn');
+  const map = {home:0, formation:1, strategies:2, marche:3, journal:4, contact:5};
+  if(map[name] !== undefined) btns[map[name]].classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ===== TOGGLE LESSONS =====
+function toggleLesson(el) {
+  const body = el.querySelector('.lesson-body');
+  body.classList.toggle('open');
+}
+function toggleStrat(el) {
+  const body = el.querySelector('.strat-detail');
+  body.classList.toggle('open');
+}
+
+// ===== MARKET DATA =====
+const marketData = {
+  'EUR/USD':    {price:1.0847, change:0.12,  spread:0.0001},
+  'GBP/USD':    {price:1.2734, change:-0.08, spread:0.0002},
+  'USD/JPY':    {price:154.23, change:0.31,  spread:0.01},
+  'BTC/USD':    {price:63842,  change:2.14,  spread:10},
+  'ETH/USD':    {price:3124,   change:-1.22, spread:2},
+  'Or (XAU/USD)':{price:2318,  change:0.45,  spread:0.5},
+  'Pétrole (WTI)':{price:78.54,change:-0.67, spread:0.03},
+  'S&P 500':    {price:5267,   change:0.88,  spread:0.5},
+};
+
+let selectedPair = 'EUR/USD';
+let balance = 10000;
+let totalPnl = 0;
+let tradeCount = 0;
+let openTrades = [];
+let chartHistory = {};
+let tradeDir = 'buy';
+let priceChart = null;
+
+Object.keys(marketData).forEach(pair => {
+  const base = marketData[pair].price;
+  const hist = [];
+  for(let i=50;i>=0;i--) {
+    const noise = (Math.random()-0.5)*base*0.004;
+    hist.push(+(base + noise*(i/5)).toFixed(pair.includes('JPY')?2:4));
+  }
+  chartHistory[pair] = hist;
+});
+
+setInterval(() => {
+  Object.keys(marketData).forEach(pair => {
+    const d = marketData[pair];
+    const move = (Math.random()-0.5)*d.price*0.0015;
+    d.price = +(d.price + move).toFixed(pair.includes('JPY')||pair.includes('BTC')||pair.includes('ETH')||pair.includes('Or')||pair.includes('S&P')||pair.includes('Pétrole') ? (d.price>100?2:4) : 4);
+    d.change = +(d.change + (Math.random()-0.5)*0.05).toFixed(2);
+    chartHistory[pair].push(d.price);
+    if(chartHistory[pair].length > 60) chartHistory[pair].shift();
+  });
+  renderMarketGrid();
+  if(priceChart) updateChart();
+  updateOpenTrades();
+}, 2000);
+
+function renderMarketGrid() {
+  const grid = document.getElementById('market-grid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  Object.keys(marketData).forEach(pair => {
+    const d = marketData[pair];
+    const isUp = d.change >= 0;
+    const card = document.createElement('div');
+    card.className = 'market-card' + (pair === selectedPair ? ' selected' : '');
+    card.innerHTML = `
+      <div class="market-pair">${pair}</div>
+      <div class="market-price">${d.price.toLocaleString('fr-FR',{minimumFractionDigits:2})}</div>
+      <div class="market-change ${isUp?'up':'down'}">${isUp?'▲':'▼'} ${Math.abs(d.change)}%</div>
+    `;
+    card.onclick = () => { selectedPair = pair; document.getElementById('trade-pair').value = pair; renderMarketGrid(); updateChart(); document.getElementById('chart-label').textContent = pair + ' – Évolution du Prix'; };
+    grid.appendChild(card);
+  });
+}
+
+function initChart() {
+  const canvas = document.getElementById('priceChart');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const data = chartHistory[selectedPair];
+  priceChart = {
+    ctx, data,
+    draw: function() {
+      const w = ctx.canvas.offsetWidth;
+      const h = 200;
+      ctx.canvas.width = w;
+      ctx.canvas.height = h;
+      const d = chartHistory[selectedPair];
+      const min = Math.min(...d)*0.9995;
+      const max = Math.max(...d)*1.0005;
+      const scaleX = w / (d.length-1);
+      const scaleY = h / (max-min);
+      ctx.clearRect(0,0,w,h);
+      ctx.strokeStyle='rgba(255,255,255,0.05)';
+      ctx.lineWidth=1;
+      for(let i=0;i<5;i++){ctx.beginPath();ctx.moveTo(0,h*i/4);ctx.lineTo(w,h*i/4);ctx.stroke();}
+      const grad = ctx.createLinearGradient(0,0,0,h);
+      const isUp = d[d.length-1] >= d[0];
+      grad.addColorStop(0, isUp?'rgba(0,230,118,0.3)':'rgba(255,68,68,0.3)');
+      grad.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.beginPath();
+      d.forEach((v,i)=>{
+        const x = i*scaleX;
+        const y = h - (v-min)*scaleY;
+        i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      });
+      ctx.lineTo(w,h);ctx.lineTo(0,h);ctx.closePath();
+      ctx.fillStyle=grad;ctx.fill();
+      ctx.beginPath();
+      d.forEach((v,i)=>{
+        const x = i*scaleX;
+        const y = h - (v-min)*scaleY;
+        i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      });
+      ctx.strokeStyle=isUp?'#00e676':'#ff4444';
+      ctx.lineWidth=2;ctx.stroke();
+    }
+  };
+  priceChart.draw();
+}
+
+function updateChart() {
+  if(priceChart) priceChart.draw();
+}
+
+function setTradeDir(dir) {
+  tradeDir = dir;
+  document.getElementById('tab-buy').classList.toggle('active', dir==='buy');
+  document.getElementById('tab-sell').classList.toggle('active', dir==='sell');
+  document.getElementById('open-trade-btn').textContent = dir==='buy' ? '▲ OUVRIR ACHAT' : '▼ OUVRIR VENTE';
+}
+
+function openTrade() {
+  const pair   = document.getElementById('trade-pair').value;
+  const amount = parseFloat(document.getElementById('trade-amount').value)||100;
+  const sl     = parseFloat(document.getElementById('trade-sl').value)||20;
+  const tp     = parseFloat(document.getElementById('trade-tp').value)||40;
+  const entry  = marketData[pair].price;
+  if(amount > balance){ showToast('❌ Solde insuffisant !','red'); return; }
+  balance -= amount;
+  tradeCount++;
+  const trade = { id: Date.now(), pair, dir:tradeDir, amount, entry, sl, tp, pnl:0 };
+  openTrades.push(trade);
+  document.getElementById('balance-display').textContent = balance.toFixed(2)+' $';
+  document.getElementById('trades-count').textContent = tradeCount;
+  showToast(tradeDir==='buy'?'▲ Achat ouvert sur '+pair:'▼ Vente ouverte sur '+pair);
+  renderOpenTrades();
+}
+
+function updateOpenTrades() {
+  openTrades.forEach(t => {
+    const current = marketData[t.pair].price;
+    const diff = current - t.entry;
+    const pipVal = t.amount / t.entry * 100;
+    t.pnl = t.dir==='buy' ? +(diff * pipVal).toFixed(2) : +(-diff * pipVal).toFixed(2);
+    const slDiff  = t.entry * (t.sl/10000);
+    const tpDiff  = t.entry * (t.tp/10000);
+    const hitSL   = t.dir==='buy' ? current <= t.entry - slDiff : current >= t.entry + slDiff;
+    const hitTP   = t.dir==='buy' ? current >= t.entry + tpDiff : current <= t.entry - tpDiff;
+    if(hitSL||hitTP) closeTrade(t.id, true);
+  });
+  renderOpenTrades();
+}
+
+function closeTrade(id, auto=false) {
+  const idx = openTrades.findIndex(t=>t.id===id);
+  if(idx===-1) return;
+  const t = openTrades[idx];
+  const pnl = t.pnl||0;
+  balance += t.amount + pnl;
+  totalPnl += pnl;
+  openTrades.splice(idx,1);
+  document.getElementById('balance-display').textContent = balance.toFixed(2)+' $';
+  const pnlEl = document.getElementById('pnl-total');
+  pnlEl.textContent = (totalPnl>=0?'+':'')+totalPnl.toFixed(2)+' $';
+  pnlEl.style.color = totalPnl>=0?'var(--green)':'var(--red)';
+  if(auto) showToast(pnl>=0?'🎯 TP atteint +'+pnl+'$':'🛑 SL atteint '+pnl+'$', pnl>=0?'green':'red');
+  renderOpenTrades();
+}
+
+function renderOpenTrades() {
+  const list = document.getElementById('open-trades-list');
+  if(!list) return;
+  if(openTrades.length===0){list.innerHTML='<div style="color:var(--muted);font-size:.85rem;text-align:center;padding:16px;">Aucun trade ouvert</div>';return;}
+  list.innerHTML = openTrades.map(t=>`
+    <div class="open-trade-row">
+      <span><strong>${t.pair}</strong></span>
+      <span style="color:${t.dir==='buy'?'var(--green)':'var(--red)'}">${t.dir==='buy'?'▲ ACHAT':'▼ VENTE'}</span>
+      <span>${t.amount}$</span>
+      <span>@${t.entry}</span>
+      <span class="${(t.pnl||0)>=0?'pnl-pos':'pnl-neg'}">${(t.pnl||0)>=0?'+':''}${(t.pnl||0).toFixed(2)}$</span>
+      <button class="close-btn" onclick="closeTrade(${t.id})">Fermer</button>
+    </div>`).join('');
+}
+
+function resetBalance() {
+  if(!confirm('Remettre le solde à 10,000$ ?')) return;
+  balance=10000; totalPnl=0; tradeCount=0; openTrades=[];
+  document.getElementById('balance-display').textContent='10,000.00 $';
+  document.getElementById('pnl-total').textContent='+0.00 $';
+  document.getElementById('pnl-total').style.color='var(--green)';
+  document.getElementById('trades-count').textContent='0';
+  renderOpenTrades();
+}
+
+document.querySelector('.nav-btn:nth-child(4)').addEventListener('click',()=>{
+  setTimeout(()=>{renderMarketGrid();initChart();},50);
+});
+
+// ===== JOURNAL =====
+let journalEntries = JSON.parse(localStorage.getItem('lbbs_journal')||'[]');
+
+function today() {
+  return new Date().toISOString().slice(0,10);
+}
+
+function addJournalEntry() {
+  const entry = {
+    id: Date.now(),
+    date: document.getElementById('j-date').value || today(),
+    pair: document.getElementById('j-pair').value,
+    dir: document.getElementById('j-dir').value,
+    strat: document.getElementById('j-strat').value,
+    result: parseFloat(document.getElementById('j-result').value)||0,
+    outcome: document.getElementById('j-outcome').value,
+    notes: document.getElementById('j-notes').value
+  };
+  journalEntries.unshift(entry);
+  localStorage.setItem('lbbs_journal', JSON.stringify(journalEntries));
+  document.getElementById('j-result').value='';
+  document.getElementById('j-notes').value='';
+  renderJournal();
+  showToast('✅ Trade enregistré dans le journal !');
+}
+
+function deleteEntry(id) {
+  journalEntries = journalEntries.filter(e=>e.id!==id);
+  localStorage.setItem('lbbs_journal', JSON.stringify(journalEntries));
+  renderJournal();
+}
+
+function clearJournal() {
+  if(!confirm('Effacer tout le journal ?')) return;
+  journalEntries=[];
+  localStorage.setItem('lbbs_journal','[]');
+  renderJournal();
+}
+
+function renderJournal() {
+  const total = journalEntries.length;
+  const wins = journalEntries.filter(e=>e.outcome.startsWith('WIN')).length;
+  const losses = journalEntries.filter(e=>e.outcome.startsWith('LOSS')).length;
+  const pnl = journalEntries.reduce((s,e)=>s+e.result,0);
+  const wr = total>0?Math.round(wins/total*100):0;
+  const statsEl = document.getElementById('journal-stats');
+  if(statsEl) statsEl.innerHTML = `
+    <div class="stat-box"><div class="stat-val">${total}</div><div class="stat-label">Total Trades</div></div>
+    <div class="stat-box"><div class="stat-val" style="color:var(--green)">${wins}</div><div class="stat-label">Gains ✅</div></div>
+    <div class="stat-box"><div class="stat-val" style="color:var(--red)">${losses}</div><div class="stat-label">Pertes ❌</div></div>
+    <div class="stat-box"><div class="stat-val" style="color:${wr>=50?'var(--green)':'var(--red)'}">${wr}%</div><div class="stat-label">Taux de Réussite</div></div>
+    <div class="stat-box"><div class="stat-val" style="color:${pnl>=0?'var(--green)':'var(--red)'}">${pnl>=0?'+':''}${pnl.toFixed(2)}$</div><div class="stat-label">P&L Total</div></div>
+  `;
+  const tbody = document.getElementById('journal-body');
+  if(!tbody) return;
+  if(journalEntries.length===0){tbody.innerHTML='<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:20px;">Aucun trade enregistré. Commence par ajouter un trade !</td></tr>';return;}
+  tbody.innerHTML = journalEntries.map(e=>`
+    <tr>
+      <td>${e.date}</td>
+      <td><strong>${e.pair}</strong></td>
+      <td style="color:${e.dir.includes('BUY')?'var(--green)':'var(--red)'}">${e.dir}</td>
+      <td>${e.strat}</td>
+      <td style="color:${e.result>=0?'var(--green)':'var(--red)'};font-weight:700">${e.result>=0?'+':''}${e.result.toFixed(2)}$</td>
+      <td><span class="${e.outcome.startsWith('WIN')?'badge-win':'badge-loss'}">${e.outcome}</span></td>
+      <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font-size:.8rem">${e.notes||'—'}</td>
+      <td><button onclick="deleteEntry(${e.id})" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:1rem;">🗑️</button></td>
+    </tr>`).join('');
+}
+
+function exportJournal() {
+  if(journalEntries.length===0){showToast('❌ Journal vide !','red');return;}
+  const header='Date,Paire,Direction,Stratégie,Résultat ($),Outcome,Notes\n';
+  const rows=journalEntries.map(e=>`${e.date},${e.pair},${e.dir},${e.strat},${e.result},${e.outcome},"${e.notes||''}"`).join('\n');
+  const blob=new Blob([header+rows],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='journal_trading_lbbs.csv';a.click();
+}
+
+// ===== TOAST =====
+function showToast(msg, color) {
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.background=color==='red'?'var(--red)':color==='green'?'var(--green)':'var(--gold)';
+  t.style.color=color?'#fff':'var(--dark)';
+  t.style.display='block';
+  setTimeout(()=>t.style.display='none',3000);
+}
+
+// Re-init chart when switching to market section
+const marketNavBtn = document.querySelectorAll('.nav-btn')[3];
+if(marketNavBtn) marketNavBtn.addEventListener('click', () => setTimeout(()=>{renderMarketGrid();initChart();},100));
+</script>
+</body>
+</html>
