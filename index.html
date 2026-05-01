@@ -3,8 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="LeaderBBS">
+<meta name="msapplication-TileColor" content="#0a0e1a">
+<meta name="theme-color" content="#FFD700">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <title>LEADER BBS GUIDE – Apprends le Trading Gratuitement</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // Initialisation EmailJS
+  emailjs.init('CPM6lICkd3Kfq5Th6');
+</script>
 <style>
   :root {
     --gold: #FFD700;
@@ -317,6 +331,222 @@
     .auth-box{padding:22px 18px;}
   }
 </style>
+
+/* ===== VIP STYLES ===== */
+.nav-vip {
+  background: linear-gradient(90deg, #FFD700, #FFA500) !important;
+  color: #0a0e1a !important;
+  font-weight: 800 !important;
+  border-radius: 8px;
+  animation: glow-vip 2s infinite;
+}
+@keyframes glow-vip {
+  0%,100% { box-shadow: 0 0 8px rgba(255,215,0,0.4); }
+  50%      { box-shadow: 0 0 20px rgba(255,215,0,0.8); }
+}
+
+/* VIP HERO */
+.vip-hero {
+  background: linear-gradient(135deg, #0a0e1a 0%, #1a1200 50%, #0a0e1a 100%);
+  border-bottom: 2px solid #FFD700;
+  padding: 50px 16px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.vip-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,215,0,0.06), transparent);
+}
+.vip-crown { font-size: 3.5rem; margin-bottom: 10px; display: block; }
+.vip-badge {
+  display: inline-block;
+  background: linear-gradient(90deg, #FFD700, #FFA500);
+  color: #0a0e1a; font-weight: 800;
+  font-size: .75rem; letter-spacing: 3px;
+  padding: 5px 20px; border-radius: 20px;
+  margin-bottom: 16px; text-transform: uppercase;
+}
+.vip-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  color: #FFD700; line-height: 1;
+  margin-bottom: 12px; position: relative;
+}
+.vip-subtitle { color: #8899aa; font-size: 1rem; max-width: 600px; margin: 0 auto 28px; }
+.vip-price-tag {
+  display: inline-flex; align-items: baseline; gap: 6px;
+  background: rgba(255,215,0,0.1);
+  border: 2px solid #FFD700;
+  border-radius: 16px; padding: 14px 32px;
+  margin-bottom: 28px;
+}
+.vip-price-big { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: #FFD700; line-height: 1; }
+.vip-price-label { color: #8899aa; font-size: .9rem; }
+.vip-features-row {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+  margin-bottom: 32px; position: relative;
+}
+.vip-feat-pill {
+  background: rgba(255,215,0,0.08);
+  border: 1px solid rgba(255,215,0,0.25);
+  color: #FFD700; font-size: .8rem; font-weight: 700;
+  padding: 7px 16px; border-radius: 20px;
+}
+.btn-vip-pay {
+  display: inline-block;
+  background: linear-gradient(90deg, #FFD700, #FFA500);
+  color: #0a0e1a; font-weight: 800; font-size: 1.1rem;
+  padding: 16px 40px; border-radius: 14px; border: none;
+  cursor: pointer; transition: .2s; text-decoration: none;
+  box-shadow: 0 8px 32px rgba(255,215,0,0.3);
+}
+.btn-vip-pay:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(255,215,0,0.5); }
+
+/* VIP MODULES */
+.vip-modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 32px 0; }
+.vip-module {
+  background: linear-gradient(135deg, #162033, #1a1800);
+  border: 1px solid rgba(255,215,0,0.2);
+  border-radius: 18px; padding: 28px;
+  transition: .3s; cursor: pointer; position: relative; overflow: hidden;
+}
+.vip-module::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #FFD700, #FFA500);
+  transform: scaleX(0); transition: .3s; transform-origin: left;
+}
+.vip-module:hover::before { transform: scaleX(1); }
+.vip-module:hover { border-color: #FFD700; transform: translateY(-4px); }
+.vip-module-icon { font-size: 2.2rem; margin-bottom: 12px; display: block; }
+.vip-module h3 { color: #FFD700; font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; }
+.vip-module p  { color: #8899aa; font-size: .88rem; line-height: 1.6; margin-bottom: 12px; }
+.vip-module-lessons { list-style: none; }
+.vip-module-lessons li {
+  font-size: .82rem; color: #c0ccd8;
+  padding: 6px 0; border-bottom: 1px solid rgba(255,215,0,0.06);
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.vip-module-lessons li::before { content: '→'; color: #FFD700; flex-shrink: 0; }
+.vip-module-body { display: none; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,215,0,0.1); }
+.vip-module-body.open { display: block; }
+.vip-lesson-content { font-size: .88rem; color: #c0ccd8; line-height: 1.75; }
+.vip-lesson-content h4 { color: #FFA500; margin: 12px 0 6px; font-size: .92rem; }
+.vip-lesson-content ul { padding-left: 18px; }
+.vip-lesson-content ul li { margin-bottom: 6px; }
+.vip-tip { background: rgba(255,215,0,0.07); border-left: 3px solid #FFD700; padding: 10px 14px; border-radius: 0 10px 10px 0; margin: 10px 0; font-size: .83rem; }
+
+/* PAIEMENT */
+.payment-section {
+  background: linear-gradient(135deg, #0d1320, #1a1400);
+  border: 2px solid rgba(255,215,0,0.3);
+  border-radius: 22px; padding: 36px 28px; margin: 32px 0; text-align: center;
+}
+.payment-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: #FFD700; margin-bottom: 8px; }
+.payment-section > p { color: #8899aa; margin-bottom: 28px; font-size: .95rem; }
+.payment-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 560px; margin: 0 auto 28px; }
+.pay-card {
+  background: #0a0e1a; border: 1.5px solid rgba(255,215,0,0.2);
+  border-radius: 16px; padding: 22px 16px; text-align: center; transition: .2s;
+}
+.pay-card:hover { border-color: #FFD700; transform: translateY(-2px); }
+.pay-card-logo { font-size: 2.4rem; margin-bottom: 8px; }
+.pay-card-name { font-weight: 800; font-size: .95rem; margin-bottom: 4px; }
+.pay-card-number { font-size: 1.1rem; font-weight: 800; color: #FFD700; font-family: monospace; margin-bottom: 2px; }
+.pay-card-holder { font-size: .78rem; color: #8899aa; }
+.pay-steps { background: rgba(255,215,0,0.05); border-radius: 14px; padding: 20px; text-align: left; max-width: 560px; margin: 0 auto 24px; }
+.pay-steps h4 { color: #FFD700; font-size: .95rem; font-weight: 800; margin-bottom: 14px; text-align: center; }
+.pay-step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+.pay-step-num { background: linear-gradient(135deg,#FFD700,#FFA500); color: #0a0e1a; font-weight: 800; font-size: .8rem; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.pay-step p { font-size: .85rem; color: #c0ccd8; margin: 0; line-height: 1.5; }
+.pay-confirm-form { background: #0a0e1a; border: 1px solid rgba(255,215,0,0.2); border-radius: 16px; padding: 24px; max-width: 480px; margin: 0 auto; }
+.pay-confirm-form h4 { color: #FFD700; font-weight: 800; margin-bottom: 16px; font-size: 1rem; }
+
+/* VIP MARCHÉ AVANCÉ */
+.vip-market-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+.vip-market-tab { display: flex; gap: 8px; flex-wrap: wrap; }
+.mkt-tab { background: #162033; border: 1px solid rgba(255,215,0,0.15); color: #8899aa; padding: 7px 14px; border-radius: 10px; cursor: pointer; font-size: .8rem; font-weight: 700; transition: .2s; }
+.mkt-tab.active, .mkt-tab:hover { background: linear-gradient(90deg,#FFD700,#FFA500); color: #0a0e1a; border-color: transparent; }
+.analysis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 16px 0; }
+.analysis-card { background: #162033; border: 1px solid rgba(255,215,0,0.12); border-radius: 14px; padding: 18px; }
+.analysis-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.analysis-pair-name { font-weight: 800; font-size: 1rem; }
+.signal-badge { font-size: .72rem; font-weight: 800; padding: 4px 12px; border-radius: 20px; }
+.sig-buy  { background: rgba(0,230,118,.15); color: #00e676; }
+.sig-sell { background: rgba(255,68,68,.15); color: #ff4444; }
+.sig-wait { background: rgba(56,189,248,.15); color: #38bdf8; }
+.analysis-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; margin-bottom: 4px; }
+.analysis-levels { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; font-size: .78rem; }
+.level-box { background: #0a0e1a; border-radius: 8px; padding: 8px; text-align: center; }
+.level-label { color: #8899aa; margin-bottom: 2px; }
+.level-val { font-weight: 800; font-size: .9rem; }
+.level-val.green { color: #00e676; }
+.level-val.red   { color: #ff4444; }
+.analysis-reasoning { font-size: .8rem; color: #8899aa; line-height: 1.6; border-top: 1px solid rgba(255,215,0,0.08); padding-top: 10px; margin-top: 10px; }
+
+/* AGENT */
+.agent-widget {
+  position: fixed; bottom: 90px; right: 16px; z-index: 9000;
+}
+.agent-btn {
+  width: 58px; height: 58px; border-radius: 50%;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; box-shadow: 0 4px 20px rgba(255,215,0,0.4);
+  transition: .2s; position: relative;
+}
+.agent-btn:hover { transform: scale(1.1); }
+.agent-dot {
+  position: absolute; top: 4px; right: 4px;
+  width: 12px; height: 12px; background: #00e676;
+  border-radius: 50%; border: 2px solid #0a0e1a;
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.3);opacity:.7} }
+.agent-panel {
+  position: absolute; bottom: 68px; right: 0;
+  width: 300px; background: #111827;
+  border: 1.5px solid rgba(255,215,0,0.25);
+  border-radius: 18px; overflow: hidden;
+  display: none; box-shadow: 0 12px 48px rgba(0,0,0,0.6);
+}
+.agent-panel.open { display: flex; flex-direction: column; }
+.agent-header {
+  background: linear-gradient(90deg, #FFD700, #FFA500);
+  padding: 12px 16px; display: flex; align-items: center; gap: 10px;
+}
+.agent-avatar { font-size: 1.4rem; }
+.agent-header-info strong { display: block; color: #0a0e1a; font-size: .9rem; font-weight: 800; }
+.agent-header-info span { color: rgba(0,0,0,0.6); font-size: .75rem; }
+.agent-messages { height: 220px; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.agent-msg { max-width: 85%; font-size: .82rem; line-height: 1.5; padding: 9px 13px; border-radius: 14px; }
+.agent-msg.bot { background: #1c2539; color: #e2e8f0; align-self: flex-start; border-bottom-left-radius: 4px; }
+.agent-msg.user-msg { background: linear-gradient(90deg,#FFD700,#FFA500); color: #0a0e1a; align-self: flex-end; border-bottom-right-radius: 4px; font-weight: 700; }
+.agent-input-row { display: flex; gap: 8px; padding: 10px; border-top: 1px solid rgba(255,215,0,0.1); }
+.agent-input-row input { flex: 1; background: #1c2539; border: 1px solid rgba(255,215,0,0.15); border-radius: 10px; padding: 9px 12px; color: #e2e8f0; font-size: .82rem; outline: none; font-family: 'Nunito', sans-serif; }
+.agent-input-row input:focus { border-color: #FFD700; }
+.agent-input-row button { background: linear-gradient(90deg,#FFD700,#FFA500); border: none; border-radius: 10px; padding: 9px 14px; cursor: pointer; font-weight: 800; font-size: .9rem; color: #0a0e1a; }
+
+/* VIP LOCKED OVERLAY */
+.vip-lock-overlay {
+  position: absolute; inset: 0; background: rgba(10,14,26,0.96);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border-radius: 18px; z-index: 5; gap: 12px; padding: 24px; text-align: center;
+}
+.vip-lock-icon { font-size: 2.5rem; }
+.vip-lock-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #FFD700; }
+.vip-lock-sub { font-size: .85rem; color: #8899aa; }
+
+@media(max-width:600px) {
+  .payment-methods { grid-template-columns: 1fr; }
+  .vip-price-big { font-size: 3rem; }
+  .agent-panel { width: 270px; }
+}
+
+</style>
+</head>
 </head>
 <body>
 
@@ -984,6 +1214,583 @@
 </div>
 
 <!-- CONTACT -->
+
+<!-- ============================= -->
+<!--        SECTION VIP 👑         -->
+<!-- ============================= -->
+<div id="section-vip" class="section">
+
+  <!-- HERO VIP -->
+  <div class="vip-hero">
+    <span class="vip-crown">👑</span>
+    <div class="vip-badge">Accès Exclusif — Formation Professionnelle</div>
+    <div class="vip-title">FORMATION VIP<br>LEADER BBS</div>
+    <p class="vip-subtitle">Le programme complet qui transforme un débutant en trader professionnel rentable. Analyses avancées, stratégies des pros, suivi personnalisé 24/7.</p>
+    <div class="vip-price-tag">
+      <span class="vip-price-big">100$</span>
+      <span class="vip-price-label">accès à vie · tout inclus</span>
+    </div>
+    <div class="vip-features-row">
+      <span class="vip-feat-pill">✅ 12 Modules Avancés</span>
+      <span class="vip-feat-pill">📊 Analyses tous marchés</span>
+      <span class="vip-feat-pill">🤖 Agent IA 24/7</span>
+      <span class="vip-feat-pill">📈 Marché Virtuel Pro</span>
+      <span class="vip-feat-pill">🎯 Signaux Premium</span>
+      <span class="vip-feat-pill">🏆 Certification</span>
+      <span class="vip-feat-pill">👥 Groupe VIP WhatsApp</span>
+      <span class="vip-feat-pill">📞 Coaching individuel</span>
+    </div>
+    <button class="btn-vip-pay" onclick="scrollToPay()">💳 Accéder au VIP — 100$ →</button>
+  </div>
+
+  <div class="container" style="padding:32px 16px;">
+
+    <!-- MODULES VIP -->
+    <div style="text-align:center;margin-bottom:28px;">
+      <div class="sec-title" style="justify-content:center;display:block;">📚 Les 12 Modules VIP</div>
+      <p class="sec-sub" style="margin:8px auto 0;max-width:560px;" id="vip-content-area">
+        Contenu réservé aux membres VIP. Payez et accédez immédiatement à tout le programme.
+      </p>
+    </div>
+
+    <div id="vip-modules-locked" class="vip-modules">
+
+      <!-- MODULE 1 -->
+      <div class="vip-module" onclick="checkVipAndToggle(this)">
+        <span class="vip-module-icon">🧠</span>
+        <h3>MODULE 1 — Psychologie du Trader Professionnel</h3>
+        <p>Maîtrisez votre mental pour trader comme les pros. Le facteur N°1 ignoré par 95% des traders.</p>
+        <ul class="vip-module-lessons">
+          <li>Gérer la peur et la cupidité</li>
+          <li>Construire une routine de trading gagnante</li>
+          <li>Surmonter les séries de pertes</li>
+          <li>Mindset des traders à 7 chiffres</li>
+        </ul>
+        <div class="vip-module-body">
+          <div class="vip-lesson-content">
+            <h4>🧠 Les 4 émotions qui détruisent les traders :</h4>
+            <ul>
+              <li><strong>La Peur</strong> — Te fait fermer trop tôt tes positions gagnantes. Solution : respecter ton TP fixé AVANT d'entrer.</li>
+              <li><strong>La Cupidité</strong> — Te pousse à tenir trop longtemps en espérant plus. Solution : avoir un TP précis et le respecter.</li>
+              <li><strong>Le FOMO</strong> — Fear Of Missing Out. Tu entres en retard sur un move. Solution : attendre la prochaine setup, les opportunités reviennent TOUJOURS.</li>
+              <li><strong>Le Revenge Trading</strong> — Après une perte, tu veux "récupérer" immédiatement. C'est le chemin vers le compte à zéro. Solution : déconnecter après une perte, revenir le lendemain.</li>
+            </ul>
+            <h4>📋 Ta routine quotidienne de trader pro :</h4>
+            <ul>
+              <li>Matin : Analyse macro (30 min) → Identifier les setups de la journée</li>
+              <li>Définir ses niveaux AVANT l'ouverture des marchés</li>
+              <li>Placer les alertes de prix → Ne pas rester devant les charts en permanence</li>
+              <li>Après chaque trade : noter dans le journal (pourquoi, résultat, émotion ressentie)</li>
+              <li>Chaque semaine : review de tous les trades → identifier les patterns d'erreurs</li>
+            </ul>
+            <div class="vip-tip">💡 <strong>Règle des 3 trades :</strong> Si tu perds 3 fois de suite en une journée → STOP. Ferme tout et reviens demain. Sans exception.</div>
+            <h4>🏆 Mindset des traders rentables :</h4>
+            <ul>
+              <li>Ils pensent en probabilités, pas en certitudes ("ce setup a 65% de chance de marcher")</li>
+              <li>Ils savent qu'une perte n'est pas un échec — c'est un coût du business</li>
+              <li>Ils protègent TOUJOURS leur capital en premier</li>
+              <li>Ils ne cherchent pas à avoir raison, ils cherchent à gagner de l'argent</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 2 -->
+      <div class="vip-module" onclick="checkVipAndToggle(this)">
+        <span class="vip-module-icon">📊</span>
+        <h3>MODULE 2 — Analyse Technique Avancée</h3>
+        <p>Au-delà des bases. Les outils des traders institutionnels pour lire les marchés comme un livre.</p>
+        <ul class="vip-module-lessons">
+          <li>Fibonacci Retracement & Extension</li>
+          <li>Structure de marché (BOS, CHOCH)</li>
+          <li>Zones d'Offre et de Demande</li>
+          <li>Confluences et setups haute probabilité</li>
+        </ul>
+        <div class="vip-module-body">
+          <div class="vip-lesson-content">
+            <h4>📐 Fibonacci — L'outil des pros :</h4>
+            <ul>
+              <li><strong>0.382</strong> — Retracement faible. Tendance très forte.</li>
+              <li><strong>0.500</strong> — Retracement moyen. Zone à surveiller.</li>
+              <li><strong>0.618 (Golden Ratio)</strong> — Zone de retracement idéale pour entrer dans la tendance. C'est là que les institutionnels achètent/vendent.</li>
+              <li><strong>0.786</strong> — Dernier retracement avant invalidation de la tendance.</li>
+            </ul>
+            <div class="vip-tip">🎯 <strong>Setup parfait :</strong> Prix en tendance haussière → retrace sur le 0.618 → bougie de confirmation → ACHAT avec SL sous le 0.786.</div>
+            <h4>🏗️ Structure de Marché (SMC) :</h4>
+            <ul>
+              <li><strong>BOS (Break of Structure)</strong> — Le prix casse un sommet précédent = continuation de tendance. Signal pour suivre la tendance.</li>
+              <li><strong>CHOCH (Change of Character)</strong> — Le prix casse un creux en tendance haussière = possible retournement. Signe d'alerte.</li>
+              <li><strong>Zones d'Offre</strong> — Niveaux où les vendeurs institutionnels ont vendu massivement. Le prix y retourne souvent pour "collecter" avant de descendre.</li>
+              <li><strong>Zones de Demande</strong> — Niveaux où les acheteurs institutionnels ont acheté massivement. Rebonds puissants à ces niveaux.</li>
+            </ul>
+            <h4>⚡ Setup Haute Probabilité (Confluence) :</h4>
+            <ul>
+              <li>Tendance Daily + H4 alignées dans le même sens</li>
+              <li>Prix arrive sur une zone de demande/offre</li>
+              <li>Fibonacci 0.618 sur la même zone</li>
+              <li>Support/Résistance historique sur la même zone</li>
+              <li>RSI en survente/surachat → entrée avec confirmation bougie</li>
+            </ul>
+            <div class="vip-tip">🔥 Plus il y a de confluences sur un niveau, plus le trade est haute probabilité. Minimum 3 confluences avant d'entrer.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 3 -->
+      <div class="vip-module" onclick="checkVipAndToggle(this)">
+        <span class="vip-module-icon">💰</span>
+        <h3>MODULE 3 — Gestion du Capital Avancée</h3>
+        <p>Comment transformer 500$ en 10 000$ méthodiquement. Les mathématiques du trading rentable.</p>
+        <ul class="vip-module-lessons">
+          <li>Position sizing optimal</li>
+          <li>Compounding strategy</li>
+          <li>Drawdown maximal et récupération</li>
+          <li>Objectifs réalistes par capital</li>
+        </ul>
+        <div class="vip-module-body">
+          <div class="vip-lesson-content">
+            <h4>📊 La formule du sizing parfait :</h4>
+            <p>Taille de lot = (Capital × % Risque) ÷ (Distance SL en pips × valeur pip)</p>
+            <ul>
+              <li>Exemple : Capital 1000$ → Risque 1% = 10$ → SL 20 pips → Lot = 0.05</li>
+              <li>Exemple : Capital 5000$ → Risque 2% = 100$ → SL 30 pips → Lot = 0.33</li>
+            </ul>
+            <h4>📈 Le Compounding (intérêts composés) :</h4>
+            <ul>
+              <li>500$ × +5%/mois pendant 24 mois = <strong>1 604$</strong></li>
+              <li>500$ × +8%/mois pendant 24 mois = <strong>3 197$</strong></li>
+              <li>1000$ × +5%/mois pendant 36 mois = <strong>5 791$</strong></li>
+            </ul>
+            <div class="vip-tip">⚠️ Objectifs réalistes : 3-5%/mois en débutant, 8-15%/mois trader confirmé. Méfiez-vous de ceux qui promettent 50%/mois.</div>
+            <h4>🛡️ Gestion du Drawdown :</h4>
+            <ul>
+              <li>Drawdown 10% → Besoin de +11.1% pour récupérer</li>
+              <li>Drawdown 20% → Besoin de +25% pour récupérer</li>
+              <li>Drawdown 50% → Besoin de +100% pour récupérer !</li>
+              <li><strong>Règle VIP :</strong> Si drawdown atteint 10% du capital → réduire la taille des positions de 50% jusqu'à récupération.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 4 -->
+      <div class="vip-module" onclick="checkVipAndToggle(this)">
+        <span class="vip-module-icon">🔥</span>
+        <h3>MODULE 4 — Forex Avancé : EUR/USD, GBP/USD, GOLD</h3>
+        <p>Maîtriser les paires majeures avec les stratégies institutionnelles. Sessions, liquidité, manipulation.</p>
+        <ul class="vip-module-lessons">
+          <li>Les sessions de trading (London, NY, Asia)</li>
+          <li>Manipulation institutionnelle — Chasse aux stops</li>
+          <li>ICT Concepts appliqués au Forex</li>
+          <li>Analyse du Dollar Index (DXY)</li>
+        </ul>
+        <div class="vip-module-body">
+          <div class="vip-lesson-content">
+            <h4>🕐 Les Sessions et leur Volatilité :</h4>
+            <ul>
+              <li><strong>Session Asiatique</strong> (2h-11h UTC) — Faible volatilité. Les grandes paires bougent peu. Idéal pour repérer les niveaux de la journée.</li>
+              <li><strong>Session London</strong> (8h-17h UTC) — FORTE volatilité. 30% du volume Forex mondial. Les meilleures setups apparaissent à l'ouverture (8h-10h UTC).</li>
+              <li><strong>Session New York</strong> (13h-22h UTC) — Très forte volatilité notamment pendant le chevauchement avec London (13h-17h UTC). Les données économiques US sortent ici.</li>
+            </ul>
+            <h4>🎭 Manipulation Institutionnelle :</h4>
+            <ul>
+              <li>Les "Big Boys" (banques, fonds) poussent le prix sous un support pour déclencher les stops des traders particuliers → puis achètent au meilleur prix</li>
+              <li>Cette manipulation dure souvent 15-30 minutes avant le vrai mouvement</li>
+              <li><strong>Stratégie :</strong> Attendre la manipulation en début de session London/NY → entrer dans le sens OPPOSÉ à la manipulation initiale</li>
+            </ul>
+            <div class="vip-tip">💡 <strong>Astuce Gold (XAU/USD) :</strong> Le Gold est très influencé par le Dollar. Si DXY monte → Gold baisse. Si DXY baisse → Gold monte. Toujours vérifier le DXY avant de trader le Gold.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 5 -->
+      <div class="vip-module" onclick="checkVipAndToggle(this)">
+        <span class="vip-module-icon">₿</span>
+        <h3>MODULE 5 — Crypto Trading Professionnel</h3>
+        <p>Bitcoin, Ethereum et Altcoins. Cycles de marché, on-chain analysis et stratégies crypto.</p>
+        <ul class="vip-module-lessons">
+          <li>Cycles Bitcoin et Halving</li>
+          <li>Corrélations BTC/Altcoins</li>
+          <li>Fear & Greed Index</li>
+          <li>Stratégies DCA et swing crypto</li>
+        </ul>
+        <div class="vip-module-body">
+          <div class="vip-lesson-content">
+            <h4>🔄 Les Cycles Bitcoin :</h4>
+            <ul>
+              <li><strong>Halving</strong> — Tous les 4 ans environ, la récompense des mineurs est divisée par 2. Historiquement → bull run dans les 12-18 mois suivants.</li>
+              <li><strong>Phase d'Accumulation</strong> — Prix bas, peu d'intérêt médiatique. Les "smart money" achètent massivement.</li>
+              <li><strong>Phase Bull</strong> — Prix monte, médias s'emballent, grand public entre. Les smart money vendent progressivement.</li>
+              <li><strong>Phase Bear</strong> — Prix chute 70-85%. Panique générale. Les smart money rachètent en bas.</li>
+            </ul>
+            <h4>📊 Corrélations Crypto :</h4>
+            <ul>
+              <li>BTC monte → Altcoins suivent (avec retard de 2-4 semaines)</li>
+              <li>BTC chute fortement → Altcoins chutent encore plus (Beta élevé)</li>
+              <li>BTC en range → C'est souvent là que les altcoins explosent (altseason)</li>
+            </ul>
+            <div class="vip-tip">🎯 <strong>Stratégie DCA :</strong> Investir un montant fixe chaque mois sur BTC/ETH, peu importe le prix. Sur le long terme, c'est la stratégie la plus performante statistiquement pour 90% des investisseurs.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 6 -->
+      <div class="vip-module" onclick="checkVipAndToggle(this)">
+        <span class="vip-module-icon">📉</span>
+        <h3>MODULE 6 — Indices & Actions (CAC40, S&P500, Nasdaq)</h3>
+        <p>Trading des marchés actions. Analyse macro, résultats d'entreprises et stratégies indicielles.</p>
+        <ul class="vip-module-lessons">
+          <li>Comment fonctionne un indice boursier</li>
+          <li>Impact des taux d'intérêt sur les actions</li>
+          <li>Saison des résultats (Earnings)</li>
+          <li>Stratégie Long-terme sur indices</li>
+        </ul>
+        <div class="vip-module-body">
+          <div class="vip-lesson-content">
+            <h4>📈 Les Indices Majeurs :</h4>
+            <ul>
+              <li><strong>S&P 500</strong> — Les 500 plus grandes entreprises US. Le baromètre de l'économie mondiale.</li>
+              <li><strong>Nasdaq 100</strong> — Dominé par les Tech (Apple, Microsoft, Google, Meta, Amazon). Plus volatile que le S&P.</li>
+              <li><strong>CAC 40</strong> — Les 40 plus grandes entreprises françaises. Très influencé par l'Europe et le secteur Luxe/Energie.</li>
+              <li><strong>DAX 40</strong> — Allemagne. Très lié au secteur automobile et industriel.</li>
+            </ul>
+            <h4>🏦 Impact des Taux de la FED :</h4>
+            <ul>
+              <li>FED monte les taux → Actions baissent (argent plus cher → moins d'investissement)</li>
+              <li>FED baisse les taux → Actions montent (argent moins cher → plus d'investissement)</li>
+              <li>Toujours vérifier le calendrier FED avant de trader les indices</li>
+            </ul>
+            <div class="vip-tip">💡 <strong>Stratégie Indice Long-terme :</strong> Acheter le S&P 500 lors de chaque correction de -15% ou plus et tenir 2-3 ans. Historiquement 92% de réussite.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 7 -->
+      <div class="vip-module" onclick="checkVipAndToggle(this)">
+        <span class="vip-module-icon">🛢️</span>
+        <h3>MODULE 7 — Matières Premières (Or, Pétrole, Argent)</h3>
+        <p>Comprendre et trader les commodités. Refuges valeurs en temps de crise.</p>
+        <ul class="vip-module-lessons">
+          <li>Corrélation Or/Dollar/Inflation</li>
+          <li>Facteurs qui font bouger le pétrole</li>
+          <li>Saisonnalité des matières premières</li>
+          <li>Trading du Gold avec précision</li>
+        </ul>
+        <div class="vip-module-body">
+          <div class="vip-lesson-content">
+            <h4>🥇 L'Or — Valeur Refuge Absolue :</h4>
+            <ul>
+              <li>Monte en période d'incertitude (guerres, crises, inflation)</li>
+              <li>Relation inverse avec le Dollar américain (DXY)</li>
+              <li>Les banques centrales achètent de l'or massivement → signal haussier long terme</li>
+              <li>Niveaux psychologiques importants : 2000$, 2500$, 3000$ l'once</li>
+            </ul>
+            <h4>🛢️ Le Pétrole (WTI/Brent) :</h4>
+            <ul>
+              <li>Décisions OPEP+ → impact majeur sur les prix</li>
+              <li>Stocks de pétrole US (publiés chaque mercredi) → forte volatilité</li>
+              <li>Saison estivale → demande essence → pétrole monte</li>
+              <li>Récession économique → demande baisse → pétrole chute</li>
+            </ul>
+            <div class="vip-tip">🎯 <strong>Setup Gold :</strong> Regarder DXY H4 → si DXY en résistance (potentiel baisse) → prendre BUY sur XAU/USD sur support. C'est la confluence parfaite.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 8 -->
+      <div class="vip-module" onclick="checkVipAndToggle(this)">
+        <span class="vip-module-icon">⚡</span>
+        <h3>MODULE 8 — Stratégies Avancées Exclusives VIP</h3>
+        <p>Les stratégies que les traders pros ne partagent pas publiquement. ICT, Smart Money, Wyckoff.</p>
+        <ul class="vip-module-lessons">
+          <li>Méthode Wyckoff complète</li>
+          <li>Smart Money Concepts (SMC)</li>
+          <li>Order Blocks et Fair Value Gaps</li>
+          <li>Stratégie "Judas Swing"</li>
+        </ul>
+        <div class="vip-module-body">
+          <div class="vip-lesson-content">
+            <h4>📊 Méthode Wyckoff :</h4>
+            <ul>
+              <li><strong>Phase A — Arrêt de la baisse :</strong> Volume augmente, prix fait un Preliminary Support puis un Selling Climax → rebond.</li>
+              <li><strong>Phase B — Construction de la base :</strong> Prix oscille latéralement. Les institutions accumulent discrètement.</li>
+              <li><strong>Phase C — Spring :</strong> Faux breakout sous le support → chasse les stops → SIGNAL D'ACHAT pour les pros.</li>
+              <li><strong>Phase D — Tendance haussière :</strong> Prix commence à monter avec des hauts et bas de plus en plus élevés.</li>
+              <li><strong>Phase E — Bull Run :</strong> Grande hausse. C'est là que le grand public entre (trop tard).</li>
+            </ul>
+            <h4>🎯 Order Blocks & Fair Value Gaps :</h4>
+            <ul>
+              <li><strong>Order Block</strong> — La dernière bougie baissière avant une grosse hausse (ou dernière haussière avant grosse baisse). Les institutions y ont leurs ordres. Le prix y revient souvent.</li>
+              <li><strong>Fair Value Gap (FVG)</strong> — Déséquilibre entre 3 bougies consécutives. Le marché tend à "combler" ces gaps. Zone d'entrée premium.</li>
+            </ul>
+            <div class="vip-tip">🔥 <strong>Judas Swing :</strong> En début de session London ou NY, le prix fait souvent un faux mouvement (manipulation) pour chasser les stops. Attendre ce mouvement et entrer dans le sens opposé avec un SL serré = ratio risque/récompense exceptionnel (1:5 à 1:10).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 9 -->
+      <div class="vip-module" onclick="checkVipAndToggle(this)">
+        <span class="vip-module-icon">🤖</span>
+        <h3>MODULE 9 — Automatisation & Trading Algorithmique</h3>
+        <p>Créer des Expert Advisors, utiliser les outils IA pour optimiser vos trades.</p>
+        <ul class="vip-module-lessons">
+          <li>Introduction aux Expert Advisors (EA)</li>
+          <li>Backtesting d'une stratégie</li>
+          <li>Utiliser l'IA pour analyser ses trades</li>
+          <li>Les meilleurs outils gratuits du trader</li>
+        </ul>
+        <div class="vip-module-body">
+          <div class="vip-lesson-content">
+            <h4>🤖 Expert Advisors (EA) — Robots de Trading :</h4>
+            <ul>
+              <li>Programmes qui tradent automatiquement selon des règles définies</li>
+              <li>Élimine les émotions (exécution mécanique des règles)</li>
+              <li>Peuvent trader 24h/24 sans surveillance</li>
+              <li><strong>Attention :</strong> Un EA n'est aussi bon que la stratégie sur laquelle il est basé. Toujours backtester avant d'utiliser en réel.</li>
+            </ul>
+            <h4>📊 Backtesting — Tester sa stratégie sur le passé :</h4>
+            <ul>
+              <li>TradingView → Strategy Tester intégré (gratuit)</li>
+              <li>MT4/MT5 → Strategy Tester intégré</li>
+              <li>Minimum 200 trades en backtest pour avoir des résultats statistiquement fiables</li>
+              <li>Indicateurs clés : Win Rate, Profit Factor, Max Drawdown, Expectancy</li>
+            </ul>
+            <h4>🛠️ Outils IA & Analyse Gratuits :</h4>
+            <ul>
+              <li><strong>TradingView</strong> — Graphiques + scripts Pine + alertes automatiques</li>
+              <li><strong>Forexfactory.com</strong> — Calendrier économique + forum</li>
+              <li><strong>CoinGlass.com</strong> — Liquidations crypto en temps réel</li>
+              <li><strong>Finviz.com</strong> — Heat map actions + screener</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 10 -->
+      <div class="vip-module" onclick="checkVipAndToggle(this)">
+        <span class="vip-module-icon">📰</span>
+        <h3>MODULE 10 — Analyse Fondamentale Approfondie</h3>
+        <p>Décrypter les données économiques mondiales et anticiper les grands mouvements de marché.</p>
+        <ul class="vip-module-lessons">
+          <li>Les 10 indicateurs économiques majeurs</li>
+          <li>Politique monétaire des banques centrales</li>
+          <li>Anticiper les décisions FED/BCE</li>
+          <li>Corrélations inter-marchés</li>
+        </ul>
+        <div class="vip-module-body">
+          <div class="vip-lesson-content">
+            <h4>📊 Les 10 Indicateurs à Surveiller :</h4>
+            <ul>
+              <li><strong>NFP</strong> — Non-Farm Payrolls. Emploi US. 1er vendredi du mois. Impact MAJEUR sur Dollar.</li>
+              <li><strong>CPI</strong> — Consumer Price Index. Inflation. Si CPI monte → FED monte taux → Dollar fort.</li>
+              <li><strong>PIB/GDP</strong> — Croissance économique trimestrielle.</li>
+              <li><strong>ISM Manufacturing</strong> — Santé du secteur industriel.</li>
+              <li><strong>Retail Sales</strong> — Dépenses des consommateurs.</li>
+              <li><strong>Décisions taux FED/BCE/BOE/BOJ</strong> — Les plus impactantes.</li>
+              <li><strong>Jobless Claims</strong> — Demandes d'allocations chômage hebdomadaires US.</li>
+              <li><strong>PCE</strong> — L'indicateur d'inflation préféré de la FED.</li>
+              <li><strong>Durable Goods Orders</strong> — Commandes de biens durables.</li>
+              <li><strong>FOMC Minutes</strong> — Compte-rendu de la réunion FED → indications sur les prochaines décisions.</li>
+            </ul>
+            <div class="vip-tip">📅 Règle d'or : Toujours vérifier Forexfactory.com chaque matin pour les événements du jour. Les icônes rouges = FORT impact = éviter de trader 15min avant et après la publication si vous débutez.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 11 -->
+      <div class="vip-module" onclick="checkVipAndToggle(this)">
+        <span class="vip-module-icon">💼</span>
+        <h3>MODULE 11 — Passer au Trading Réel & Prop Firms</h3>
+        <p>Comment financer votre trading via les Prop Firms et accéder à des capitaux de 10 000$ à 200 000$.</p>
+        <ul class="vip-module-lessons">
+          <li>Choisir sa Prop Firm (FTMO, MyForexFunds...)</li>
+          <li>Passer le Challenge avec succès</li>
+          <li>Gérer un compte financé</li>
+          <li>Retirer ses profits légalement</li>
+        </ul>
+        <div class="vip-module-body">
+          <div class="vip-lesson-content">
+            <h4>🏦 Qu'est-ce qu'une Prop Firm ?</h4>
+            <p>Une société qui vous confie son capital pour trader. Vous gardez 70-90% des profits. Vous ne risquez que les frais du challenge (200-500$), pas un gros capital personnel.</p>
+            <h4>📋 Les règles typiques d'un Challenge :</h4>
+            <ul>
+              <li>Objectif de profit : +8% à +10% en Phase 1</li>
+              <li>Drawdown journalier maximum : -5%</li>
+              <li>Drawdown total maximum : -10%</li>
+              <li>Durée : 30 jours minimum</li>
+              <li>Jours de trading minimum : 10 jours</li>
+            </ul>
+            <h4>✅ Stratégie pour réussir le Challenge :</h4>
+            <ul>
+              <li>Risquer max 0.5% par trade (très conservateur)</li>
+              <li>Viser ratio 1:3 minimum</li>
+              <li>4-6 trades par semaine maximum (qualité > quantité)</li>
+              <li>Ne jamais trader les 30min avant une grosse news</li>
+              <li>S'arrêter dès +3% dans la journée</li>
+            </ul>
+            <div class="vip-tip">🎯 Prop Firms recommandées : FTMO (République Tchèque), The Funded Trader, MyFundedFX. Toujours vérifier la légitimité avant de payer un challenge.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 12 -->
+      <div class="vip-module" onclick="checkVipAndToggle(this)">
+        <span class="vip-module-icon">🏆</span>
+        <h3>MODULE 12 — Plan de Trading Professionnel & Certification</h3>
+        <p>Construire votre plan de trading personnel complet et obtenir votre certification Leader BBS VIP.</p>
+        <ul class="vip-module-lessons">
+          <li>Rédiger ton plan de trading Pro</li>
+          <li>Définir tes objectifs financiers réalistes</li>
+          <li>Checklist du trader profitable</li>
+          <li>Certification Leader BBS VIP</li>
+        </ul>
+        <div class="vip-module-body">
+          <div class="vip-lesson-content">
+            <h4>📋 Ton Plan de Trading Professionnel :</h4>
+            <ul>
+              <li><strong>Capital de départ :</strong> Combien puis-je me permettre de perdre totalement sans affecter ma vie ?</li>
+              <li><strong>Marchés tradés :</strong> Maximum 2-3 paires/actifs. La spécialisation bat la diversification en trading.</li>
+              <li><strong>Timeframes :</strong> 1 timeframe principal pour les entrées (ex: H1) + 1 supérieur pour le contexte (ex: H4/Daily).</li>
+              <li><strong>Stratégie définie :</strong> Conditions d'entrée exactes (pas vagues). Conditions de sortie exactes.</li>
+              <li><strong>Règles de risque :</strong> % risqué par trade, perte max journalière, perte max hebdomadaire.</li>
+              <li><strong>Heures de trading :</strong> Quand je trade et quand je ne trade JAMAIS.</li>
+              <li><strong>Objectifs :</strong> % mensuel cible (réaliste), objectif sur 6 mois et 1 an.</li>
+            </ul>
+            <h4>✅ Checklist du Trader Profitable :</h4>
+            <ul>
+              <li>☐ J'ai analysé les marchés AVANT d'ouvrir des positions</li>
+              <li>☐ Mon setup respecte les conditions de mon plan</li>
+              <li>☐ Mon SL est défini et placé AVANT d'entrer</li>
+              <li>☐ Mon risque sur ce trade ne dépasse pas 2% de mon capital</li>
+              <li>☐ Je ne suis pas en train de "revenge trader"</li>
+              <li>☐ Je respecte mes niveaux TP sans les modifier</li>
+              <li>☐ J'enregistre ce trade dans mon journal</li>
+            </ul>
+            <div class="vip-tip">🏆 Félicitations ! En complétant les 12 modules, vous avez le niveau pour commencer à trader sérieusement. Contactez-nous sur WhatsApp pour recevoir votre Certificat Leader BBS VIP.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end vip-modules -->
+
+    <!-- MARCHÉ VIP AVANCÉ -->
+    <div style="margin:40px 0;">
+      <div class="sec-title">📊 Analyses de Marchés — Niveau Pro</div>
+      <p class="sec-sub">Analyses techniques complètes avec signaux, niveaux et raisonnement. Mis à jour en continu.</p>
+
+      <div class="vip-market-header">
+        <div class="vip-market-tab">
+          <button class="mkt-tab active" onclick="filterMarket('all',this)">Tous</button>
+          <button class="mkt-tab" onclick="filterMarket('forex',this)">Forex</button>
+          <button class="mkt-tab" onclick="filterMarket('crypto',this)">Crypto</button>
+          <button class="mkt-tab" onclick="filterMarket('indices',this)">Indices</button>
+          <button class="mkt-tab" onclick="filterMarket('commodities',this)">Matières 1ères</button>
+        </div>
+      </div>
+
+      <div class="analysis-grid" id="vip-analysis-grid"></div>
+    </div>
+
+    <!-- PAIEMENT -->
+    <div class="payment-section" id="payment-section">
+      <div style="font-size:2.5rem;margin-bottom:12px;">💳</div>
+      <h2>Accéder au VIP — 100$</h2>
+      <p>Paiement sécurisé via Mobile Money. Accès activé dans les 2h après confirmation.</p>
+
+      <div class="payment-methods">
+        <div class="pay-card">
+          <div class="pay-card-logo">🟠</div>
+          <div class="pay-card-name" style="color:#FF6B00;">Orange Money</div>
+          <div class="pay-card-number">655 75 20 04</div>
+          <div class="pay-card-holder">ARDENT TEBOBE</div>
+        </div>
+        <div class="pay-card">
+          <div class="pay-card-logo">🔵</div>
+          <div class="pay-card-name" style="color:#0066CC;">MTN MoMo</div>
+          <div class="pay-card-number">674 31 50 43</div>
+          <div class="pay-card-holder">MOCTAR OUMAROU</div>
+        </div>
+      </div>
+
+      <div class="pay-steps">
+        <h4>📋 Comment procéder :</h4>
+        <div class="pay-step">
+          <div class="pay-step-num">1</div>
+          <p>Envoyez <strong>100$</strong> (ou l'équivalent en FCFA au taux du jour) au numéro de votre choix (Orange ou MTN).</p>
+        </div>
+        <div class="pay-step">
+          <div class="pay-step-num">2</div>
+          <p>Notez votre <strong>numéro de transaction</strong> (reçu par SMS après le paiement).</p>
+        </div>
+        <div class="pay-step">
+          <div class="pay-step-num">3</div>
+          <p>Remplissez le formulaire ci-dessous avec votre numéro de transaction et votre email.</p>
+        </div>
+        <div class="pay-step">
+          <div class="pay-step-num">4</div>
+          <p>Votre accès VIP est activé dans les <strong>2 heures</strong> après vérification. Vous recevrez une confirmation par email.</p>
+        </div>
+      </div>
+
+      <div class="pay-confirm-form">
+        <h4>✅ Confirmer mon Paiement</h4>
+        <div class="auth-error" id="pay-error"></div>
+        <div class="auth-success" id="pay-success"></div>
+
+        <div style="margin-bottom:12px;">
+          <label>Votre Nom Complet</label>
+          <input type="text" id="pay-name" placeholder="Ex : Jean Dupont">
+        </div>
+        <div style="margin-bottom:12px;">
+          <label>Votre Email</label>
+          <input type="email" id="pay-email" placeholder="votre@email.com">
+        </div>
+        <div style="margin-bottom:12px;">
+          <label>Méthode de paiement</label>
+          <select id="pay-method">
+            <option>Orange Money — 655 75 20 04</option>
+            <option>MTN MoMo — 674 31 50 43</option>
+          </select>
+        </div>
+        <div style="margin-bottom:20px;">
+          <label>Numéro de Transaction (reçu par SMS)</label>
+          <input type="text" id="pay-txid" placeholder="Ex : CI2024112894732">
+        </div>
+        <button class="btn-vip-pay" onclick="submitPayment()" style="width:100%;font-size:1rem;padding:14px;">
+          📨 Envoyer ma Confirmation
+        </button>
+        <p style="font-size:.75rem;color:#8899aa;margin-top:12px;text-align:center;">
+          Besoin d'aide ? WhatsApp : <a href="https://wa.me/237655752004" style="color:#FFD700;">+237 655 75 20 04</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div><!-- end section-vip -->
+
+<!-- AGENT IA FLOTTANT -->
+<div class="agent-widget" id="agent-widget" style="display:none;">
+  <div class="agent-panel" id="agent-panel">
+    <div class="agent-header">
+      <div class="agent-avatar">🤖</div>
+      <div class="agent-header-info">
+        <strong>Agent Leader BBS</strong>
+        <span>🟢 En ligne — Répond en quelques secondes</span>
+      </div>
+    </div>
+    <div class="agent-messages" id="agent-messages">
+      <div class="agent-msg bot">👋 Bonjour ! Je suis l'agent de support Leader BBS VIP. Je suis là pour répondre à toutes vos questions sur le trading, les modules ou votre compte. Comment puis-je vous aider ?</div>
+    </div>
+    <div class="agent-input-row">
+      <input type="text" id="agent-input" placeholder="Posez votre question..." onkeydown="if(event.key==='Enter')sendAgentMsg()">
+      <button onclick="sendAgentMsg()">➤</button>
+    </div>
+  </div>
+  <button class="agent-btn" onclick="toggleAgent()">
+    🤖
+    <div class="agent-dot"></div>
+  </button>
+</div>
 <div id="section-contact" class="section">
   <div class="container" style="padding:40px 16px;">
     <div class="contact-box">
@@ -1029,6 +1836,15 @@
   </div>
 </div>
 
+<div id="install-banner" style="display:none;position:fixed;bottom:80px;left:16px;right:16px;z-index:8888;background:linear-gradient(135deg,#162033,#1c2539);border:1.5px solid #FFD700;border-radius:16px;padding:14px 18px;align-items:center;gap:14px;box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+  <div style="font-size:2rem;">📱</div>
+  <div style="flex:1;">
+    <div style="font-weight:800;color:#FFD700;font-size:.9rem;">Installer lApplication</div>
+    <div style="font-size:.78rem;color:#8899aa;">Accès rapide depuis votre écran daccueil</div>
+  </div>
+  <button onclick="installApp()" style="background:linear-gradient(90deg,#FFD700,#FFA500);color:#0a0e1a;border:none;padding:9px 16px;border-radius:10px;font-weight:800;font-size:.82rem;cursor:pointer;white-space:nowrap;">Installer ✓</button>
+  <button onclick="document.getElementById('install-banner').style.display='none'" style="background:none;border:none;color:#8899aa;font-size:1.2rem;cursor:pointer;padding:0 4px;">✕</button>
+</div>
 <div id="toast">✅ Enregistré avec succès !</div>
 
 <script>
@@ -1097,6 +1913,27 @@ function handleRegister() {
   users.push(newUser);
   saveUsers(users);
   saveSession({ id: newUser.id, name, email });
+
+  // ── Notification EmailJS → bblaoga9@gmail.com ──
+  const totalUsers = users.length;
+  const dateInscription = new Date().toLocaleString('fr-FR', {
+    weekday: 'long', year: 'numeric', month: 'long',
+    day: 'numeric', hour: '2-digit', minute: '2-digit'
+  });
+
+  emailjs.send('service_lb7emee', 'template_r92psht', {
+    to_email:      'bblaoga9@gmail.com',
+    to_name:       'Leader BBS',
+    member_name:   name,
+    member_email:  email,
+    date_inscription: dateInscription,
+    total_membres: totalUsers,
+    reply_to:      email
+  }).then(() => {
+    console.log('[EmailJS] Notification envoyée !');
+  }).catch(err => {
+    console.warn('[EmailJS] Erreur envoi:', err);
+  });
 
   showAuthSuccess('register', '✅ Compte créé ! Bienvenue ' + name + ' !');
   setTimeout(() => unlockApp(name, email), 1200);
@@ -1457,9 +2294,284 @@ function showToast(msg, color) {
   setTimeout(()=>t.style.display='none',3000);
 }
 
+// ===== PWA SERVICE WORKER =====
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('[PWA] Service Worker enregistré', reg.scope))
+      .catch(err => console.warn('[PWA] Erreur SW:', err));
+  });
+}
+
+// Bannière d'installation personnalisée
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const banner = document.getElementById('install-banner');
+  if (banner) banner.style.display = 'flex';
+});
+
+function installApp() {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(r => {
+    if (r.outcome === 'accepted') showToast('✅ Application installée !', 'green');
+    deferredPrompt = null;
+    const banner = document.getElementById('install-banner');
+    if (banner) banner.style.display = 'none';
+  });
+}
+
+window.addEventListener('appinstalled', () => {
+  showToast('🎉 Application installée avec succès !', 'green');
+});
+
 // Re-init chart when switching to market section
 const marketNavBtn = document.querySelectorAll('.nav-btn')[3];
 if(marketNavBtn) marketNavBtn.addEventListener('click', () => setTimeout(()=>{renderMarketGrid();initChart();},100));
+
+// ===========================
+//   VIP SYSTEM
+// ===========================
+const VIP_KEY = 'lbbs_vip';
+
+function isVip() {
+  const session = getSession();
+  if (!session) return false;
+  const vipList = JSON.parse(localStorage.getItem(VIP_KEY) || '[]');
+  return vipList.includes(session.email);
+}
+
+function checkVipAndToggle(el) {
+  if (!isVip()) {
+    scrollToPay();
+    showToast('👑 Accès VIP requis — Payez 100$ pour débloquer', 'gold');
+    return;
+  }
+  const body = el.querySelector('.vip-module-body');
+  if (body) body.classList.toggle('open');
+}
+
+function scrollToPay() {
+  document.getElementById('payment-section').scrollIntoView({ behavior: 'smooth' });
+}
+
+function filterMarket(cat, btn) {
+  document.querySelectorAll('.mkt-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderVipAnalysis(cat);
+}
+
+// ── VIP Analysis Data ──
+const vipAnalyses = [
+  { pair:'EUR/USD', cat:'forex', price:'1.0847', signal:'BUY', tf:'H4',
+    support:'1.0780', resistance:'1.0920', sl:'1.0750', tp:'1.0950',
+    reason:'Prix sur zone de demande H4 + Fibonacci 0.618 + MA50 en support. DXY en résistance mensuelle. Setup haute probabilité.' },
+  { pair:'GBP/USD', cat:'forex', price:'1.2734', signal:'WAIT', tf:'H4',
+    support:'1.2680', resistance:'1.2810', sl:'1.2640', tp:'1.2850',
+    reason:'Prix en zone neutre entre support et résistance. Attendre une confirmation directionnelle. NFP vendredi → volatilité attendue.' },
+  { pair:'XAU/USD', cat:'commodities', price:'3,321', signal:'BUY', tf:'Daily',
+    support:'3,280', resistance:'3,400', sl:'3,240', tp:'3,420',
+    reason:'Or en tendance haussière forte. DXY en faiblesse. Banques centrales achètent massivement. Réaccumulation sur zone de demande Daily.' },
+  { pair:'BTC/USD', cat:'crypto', price:'83,412', signal:'BUY', tf:'Daily',
+    support:'78,000', resistance:'92,000', sl:'74,000', tp:'95,000',
+    reason:'Structure haussière intacte. Post-halving cycle. Prix au-dessus MA200 Weekly. Accumulation visible sur on-chain. Cible 95K.' },
+  { pair:'ETH/USD', cat:'crypto', price:'3,184', signal:'WAIT', tf:'H4',
+    support:'2,900', resistance:'3,500', sl:'2,750', tp:'3,600',
+    reason:'ETH en range. Attendre breakout confirmé au-dessus de 3,500 pour suivre. BTC doit donner la direction d\'abord.' },
+  { pair:'S&P 500', cat:'indices', price:'5,267', signal:'BUY', tf:'Weekly',
+    support:'5,100', resistance:'5,500', sl:'4,950', tp:'5,600',
+    reason:'Tendance haussière long terme intacte. FED pause sur les taux. Saison des résultats positive. Rebond sur MA50 Weekly.' },
+  { pair:'Nasdaq', cat:'indices', price:'18,420', signal:'BUY', tf:'Daily',
+    support:'17,800', resistance:'19,000', sl:'17,200', tp:'19,500',
+    reason:'Tech en force. Apple + Microsoft +Microsoft solides. IA continue de driver le secteur. Setup haussier sur pullback Daily.' },
+  { pair:'USD/JPY', cat:'forex', price:'154.23', signal:'SELL', tf:'H4',
+    support:'151.50', resistance:'155.80', sl:'156.20', tp:'151.00',
+    reason:'BOJ signale possibilité hausse taux. JPY pourrait se renforcer. Prix en résistance clé H4. Setup SELL sur rejet du niveau 155.80.' },
+  { pair:'Pétrole WTI', cat:'commodities', price:'78.54', signal:'WAIT', tf:'Daily',
+    support:'74.00', resistance:'83.00', sl:'72.00', tp:'85.00',
+    reason:'OPEP+ réunion prochaine. Stocks US légèrement haussiers. Attendre la décision OPEP+ pour définir la direction.' },
+  { pair:'CAC 40', cat:'indices', price:'7,842', signal:'BUY', tf:'Daily',
+    support:'7,600', resistance:'8,100', sl:'7,450', tp:'8,200',
+    reason:'Zone de demande Weekly testée. Secteur Luxe LVMH soutient l\'indice. Rebond technique probable vers 8,100.' },
+  { pair:'XRP/USD', cat:'crypto', price:'0.587', signal:'BUY', tf:'Daily',
+    support:'0.520', resistance:'0.680', sl:'0.490', tp:'0.720',
+    reason:'Décision SEC favorable attendue. Accumulation institutionnelle. Setup haussier avec objectif 0.72 en premier palier.' },
+  { pair:'Argent XAG', cat:'commodities', price:'28.42', signal:'BUY', tf:'Weekly',
+    support:'26.50', resistance:'30.00', sl:'25.80', tp:'32.00',
+    reason:'Argent sous-évalué par rapport à l\'or. Ratio Or/Argent historiquement élevé = potentiel rattrapage. Demande industrielle forte.' },
+];
+
+function renderVipAnalysis(cat) {
+  const grid = document.getElementById('vip-analysis-grid');
+  if (!grid) return;
+  const filtered = cat === 'all' ? vipAnalyses : vipAnalyses.filter(a => a.cat === cat);
+  grid.innerHTML = filtered.map(a => {
+    const sigClass = a.signal === 'BUY' ? 'sig-buy' : a.signal === 'SELL' ? 'sig-sell' : 'sig-wait';
+    const priceColor = a.signal === 'BUY' ? '#00e676' : a.signal === 'SELL' ? '#ff4444' : '#38bdf8';
+    return `
+    <div class="analysis-card">
+      <div class="analysis-card-header">
+        <span class="analysis-pair-name">${a.pair}</span>
+        <span class="signal-badge ${sigClass}">${a.signal === 'BUY' ? '▲ ACHAT' : a.signal === 'SELL' ? '▼ VENTE' : '⏳ ATTENDRE'}</span>
+      </div>
+      <div class="analysis-price" style="color:${priceColor}">${a.price}</div>
+      <div style="font-size:.72rem;color:#8899aa;margin-bottom:8px;">Timeframe : ${a.tf}</div>
+      <div class="analysis-levels">
+        <div class="level-box"><div class="level-label">Support</div><div class="level-val green">${a.support}</div></div>
+        <div class="level-box"><div class="level-label">Résistance</div><div class="level-val red">${a.resistance}</div></div>
+        <div class="level-box"><div class="level-label">Stop Loss</div><div class="level-val red">${a.sl}</div></div>
+        <div class="level-box"><div class="level-label">Take Profit</div><div class="level-val green">${a.tp}</div></div>
+      </div>
+      <div class="analysis-reasoning">💬 ${a.reason}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── PAIEMENT ──
+function submitPayment() {
+  const name   = document.getElementById('pay-name').value.trim();
+  const email  = document.getElementById('pay-email').value.trim().toLowerCase();
+  const method = document.getElementById('pay-method').value;
+  const txid   = document.getElementById('pay-txid').value.trim();
+
+  const errEl = document.getElementById('pay-error');
+  const sucEl = document.getElementById('pay-success');
+  errEl.style.display = 'none';
+  sucEl.style.display = 'none';
+
+  if (!name)  { errEl.textContent = 'Veuillez entrer votre nom.'; errEl.style.display = 'block'; return; }
+  if (!email || !email.includes('@')) { errEl.textContent = 'Email invalide.'; errEl.style.display = 'block'; return; }
+  if (!txid)  { errEl.textContent = 'Veuillez entrer votre numéro de transaction.'; errEl.style.display = 'block'; return; }
+
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = '⏳ Envoi en cours...';
+
+  const dateConfirm = new Date().toLocaleString('fr-FR', {
+    weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit'
+  });
+
+  emailjs.send('service_lb7emee', 'template_r92psht', {
+    to_email:     'bblaoga9@gmail.com',
+    to_name:      'Leader BBS',
+    member_name:  name,
+    member_email: email,
+    date_inscription: dateConfirm,
+    total_membres: '— Paiement VIP',
+    reply_to:     email,
+    message:      `💳 NOUVEAU PAIEMENT VIP\n\nNom : ${name}\nEmail : ${email}\nMéthode : ${method}\nTransaction : ${txid}\nDate : ${dateConfirm}\n\n→ Vérifier et activer l'accès VIP.`
+  }).then(() => {
+    sucEl.textContent = '✅ Confirmation envoyée ! Votre accès VIP sera activé sous 2h. Vous recevrez un email de confirmation.';
+    sucEl.style.display = 'block';
+    btn.textContent = '✅ Confirmation envoyée !';
+    showToast('📨 Paiement confirmé — Activation sous 2h !', 'gold');
+    document.getElementById('pay-name').value = '';
+    document.getElementById('pay-txid').value = '';
+    document.getElementById('pay-email').value = '';
+  }).catch(err => {
+    errEl.textContent = 'Erreur envoi. Contactez-nous sur WhatsApp au +237 655 75 20 04';
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = '📨 Envoyer ma Confirmation';
+    console.warn('[EmailJS pay error]', err);
+  });
+}
+
+// ── ACTIVER VIP (admin) ──
+function activateVip(email) {
+  const list = JSON.parse(localStorage.getItem(VIP_KEY) || '[]');
+  if (!list.includes(email)) list.push(email);
+  localStorage.setItem(VIP_KEY, JSON.stringify(list));
+}
+
+// ── AGENT IA CHAT ──
+const agentReplies = {
+  default: [
+    "Bonne question ! Pour ce sujet, je vous recommande de consulter les modules VIP correspondants. Avez-vous d'autres questions ?",
+    "C'est un point important en trading. La clé est toujours la gestion du risque. Vous voulez en savoir plus ?",
+    "Pour les analyses détaillées, regardez la section Analyses de Marchés ci-dessus. Elle est mise à jour quotidiennement.",
+    "N'hésitez pas à contacter le formateur directement sur WhatsApp au +237 655 75 20 04 pour un suivi personnalisé.",
+  ],
+  keywords: {
+    'bonjour|salut|bonsoir|hello': ["Bonjour ! Bienvenue sur Leader BBS VIP 👋 Comment puis-je vous aider aujourd'hui ?"],
+    'paiement|payer|orange|mtn|money': ["Pour le paiement, envoyez 100$ sur Orange Money (655 75 20 04 - Ardent Tebobe) ou MTN MoMo (674 31 50 43 - Moctar Oumarou), puis remplissez le formulaire de confirmation ci-dessus."],
+    'vip|accès|activer|activation': ["Après votre paiement et confirmation, votre accès VIP est activé sous 2h. Vous recevrez un email. En cas de délai, contactez WhatsApp : +237 655 75 20 04"],
+    'forex|eur|usd|gbp': ["Le Forex est le marché le plus liquide au monde ! Le Module 4 du VIP couvre en détail les stratégies Forex avancées : sessions, manipulation institutionnelle, ICT concepts."],
+    'bitcoin|btc|crypto|ethereum|eth': ["Le Module 5 VIP couvre le trading crypto professionnel : cycles Bitcoin, halving, stratégies DCA, corrélations altcoins. Très complet !"],
+    'stop loss|sl|risque|perte': ["Le Stop Loss est OBLIGATOIRE sur chaque trade. Règle d'or : ne jamais risquer plus de 1-2% de votre capital par trade. Le Module 3 VIP explique le sizing optimal."],
+    'or|gold|xau|pétrole|matière': ["Les matières premières sont couvertes dans le Module 7 VIP. L'or est particulièrement intéressant : corrélation inverse avec le Dollar, valeur refuge en temps de crise."],
+    'merci|super|parfait|excellent': ["Avec plaisir ! Je suis là pour vous aider à progresser 😊 N'hésitez pas si vous avez d'autres questions !"],
+    'problème|erreur|bug|aide|help': ["Décrivez votre problème et je vais vous aider ! Pour les urgences, contactez directement WhatsApp : +237 655 75 20 04"],
+    'formation|module|leçon|apprendre': ["La formation VIP comprend 12 modules complets : psychologie, analyse technique avancée, tous les marchés, stratégies pro, prop firms... Tout ce qu'il faut pour devenir rentable !"],
+  }
+};
+
+function toggleAgent() {
+  const panel = document.getElementById('agent-panel');
+  panel.classList.toggle('open');
+}
+
+function sendAgentMsg() {
+  const input = document.getElementById('agent-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const msgs = document.getElementById('agent-messages');
+  msgs.innerHTML += `<div class="agent-msg user-msg">${msg}</div>`;
+  input.value = '';
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(() => {
+    const reply = getAgentReply(msg.toLowerCase());
+    msgs.innerHTML += `<div class="agent-msg bot">${reply}</div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 700);
+}
+
+function getAgentReply(msg) {
+  for (const [pattern, replies] of Object.entries(agentReplies.keywords)) {
+    if (new RegExp(pattern).test(msg)) {
+      return replies[Math.floor(Math.random() * replies.length)];
+    }
+  }
+  const def = agentReplies.default;
+  return def[Math.floor(Math.random() * def.length)];
+}
+
+// ── SHOWSECTION override pour VIP ──
+const _originalShowSection = showSection;
+function showSection(name) {
+  _originalShowSection(name);
+  if (name === 'vip') {
+    setTimeout(() => {
+      renderVipAnalysis('all');
+      const agentWidget = document.getElementById('agent-widget');
+      if (agentWidget) agentWidget.style.display = isVip() ? 'block' : 'block';
+    }, 50);
+  }
+  if (name !== 'vip') {
+    const panel = document.getElementById('agent-panel');
+    if (panel) panel.classList.remove('open');
+  }
+}
+
+// ── NAV VIP button ──
+const navLinks = document.querySelector('.nav-links');
+if (navLinks && !navLinks.querySelector('.nav-vip')) {
+  const vipBtn = document.createElement('button');
+  vipBtn.className = 'nav-btn nav-vip';
+  vipBtn.textContent = '👑 VIP';
+  vipBtn.onclick = () => showSection('vip');
+  navLinks.appendChild(vipBtn);
+}
+
+// ── VIP banner on home if not VIP ──
+window.addEventListener('DOMContentLoaded', () => {
+  renderVipAnalysis('all');
+});
+
 </script>
 </body>
 </html>
